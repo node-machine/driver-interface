@@ -1,0 +1,35 @@
+{
+  "name": "abstract-adapter",
+  "version": "1.0.0-pre1",
+  "description": "Abstract machinepack describing the next-gen Waterline adapter interface.",
+  "scripts": {
+    "test": "echo 'no tests'"
+  },
+  "keywords": [
+    "sails",
+    "waterline",
+    "machines",
+    "machinepack",
+    "database-adapter"
+  ],
+  "author": "The Treeline Company",
+  "license": "MIT",
+  "dependencies": {
+    "machine": "10.4.0"
+  },
+  "machinepack": {
+    "friendlyName": "Abstract Waterline adapter",
+    "machineDir": "machines/",
+    "isAbstract": true,
+    "machines": [
+      "get-connection",
+      "release-connection",
+      "send-native-query",
+      "begin-transaction",
+      "commit-transaction",
+      "rollback-transaction",
+      "send-query",
+      "compile-query"
+    ]
+  }
+}
