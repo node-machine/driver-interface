@@ -28,10 +28,10 @@ The following compatibility layers are furcated based on the functionality they 
 ##### Driveable
 + `.getConnection()`
 + `.releaseConnection()`
-+ `.sendNativeQuery()`
 
 ##### Queryable
 + `.compileStatement()`
++ `.sendNativeQuery()`
 
 ##### Transactional
 + `.beginTransaction()`
