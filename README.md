@@ -1,6 +1,6 @@
-# Abstract Waterline Adapter
+# Proposed Waterline Adapter Interface
 
-Abstract machinepack 
+An abstract machinepack describing the next-gen Waterline adapter interface.
 
 
 ## License
