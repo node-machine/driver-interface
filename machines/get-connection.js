@@ -41,15 +41,25 @@ module.exports = {
     failedToConnect: {
       description: 'Could not acquire a connection to the database using the specified connection string.',
       extendedDescription: 'This might mean any of the following:\n'+
-      ' + the credentials encoded in the connection string are invalid\n'+
+      ' + the credentials encoded in the connection string are incorrect\n'+
       ' + there is no database server running at the provided host (i.e. even if it is just that the database process needs to be started)\n'+
       ' + there is no software "database" with the specified name running on the server\n'+
       ' + the provided connection string does not have necessary access rights for the specified software "database"\n'+
-      ' + the provided connection string is incorrect\n'+
       ' + this Node.js process could not connect to the database, perhaps because of firewall/proxy settings\n'+
       ' + any other miscellaneous connection error',
       outputVariableName: 'report',
       outputDescription: 'The `error` property is a JavaScript Error instance explaining that a connection could not be made.  The `meta` property is reserved for custom adapter-specific extensions.',
+      example: {
+        error: '===',
+        meta: '==='
+      }
+    },
+
+    malformed: {
+      description: 'The provided connection string is not valid for this this database.',
+      extendedDescription: 'The format of connection strings varies across different databases and their adapters.  This exit indicates that the provided string is not valid as per the custom rules of this adapter.',
+      outputVariableName: 'report',
+      outputDescription: 'The `error` property is a JavaScript Error instance explaining that (and preferably "why") the provided connection string is invalid.  The `meta` property is reserved for custom adapter-specific extensions.',
       example: {
         error: '===',
         meta: '==='
