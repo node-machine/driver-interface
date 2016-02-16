@@ -38,6 +38,17 @@ module.exports = {
       }
     },
 
+    malformed: {
+      description: 'The provided connection string is malformed (the adapter DID NOT ATTEMPT to acquire a connection).',
+      extendedDescription: 'The format of connection strings varies across different databases and their adapters.  This exit indicates that the provided string is not valid as per the custom rules of this adapter.',
+      outputVariableName: 'report',
+      outputDescription: 'The `error` property is a JavaScript Error instance explaining that (and preferably "why") the provided connection string is invalid.  The `meta` property is reserved for custom adapter-specific extensions.',
+      example: {
+        error: '===',
+        meta: '==='
+      }
+    },
+
     failedToConnect: {
       description: 'Could not acquire a connection to the database using the specified connection string.',
       extendedDescription: 'This might mean any of the following:\n'+
@@ -49,17 +60,6 @@ module.exports = {
       ' + any other miscellaneous connection error',
       outputVariableName: 'report',
       outputDescription: 'The `error` property is a JavaScript Error instance explaining that a connection could not be made.  The `meta` property is reserved for custom adapter-specific extensions.',
-      example: {
-        error: '===',
-        meta: '==='
-      }
-    },
-
-    malformed: {
-      description: 'The provided connection string is not valid for this this database.',
-      extendedDescription: 'The format of connection strings varies across different databases and their adapters.  This exit indicates that the provided string is not valid as per the custom rules of this adapter.',
-      outputVariableName: 'report',
-      outputDescription: 'The `error` property is a JavaScript Error instance explaining that (and preferably "why") the provided connection string is invalid.  The `meta` property is reserved for custom adapter-specific extensions.',
       example: {
         error: '===',
         meta: '==='
