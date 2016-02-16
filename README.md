@@ -25,6 +25,7 @@ The currently planned interface includes multiple echelons of functionality an a
 
 The following compatibility layers are furcated based on the functionality they expose in a generic sense-- i.e. what they make possible without knowing anything about the underlying implementation.
 
+
 ##### Driveable
 + `.getConnection()`
 + `.releaseConnection()`
@@ -37,6 +38,14 @@ The following compatibility layers are furcated based on the functionality they 
 + `.beginTransaction()`
 + `.commitTransaction()`
 + `.rollbackTransaction()`
+
+
+| Interface Layer | Description
+|:----------------|:------------------------------------------------------------------------------------------------------------------|
+| Driveable       | Any database.  Doesn't necessarily need to support persistent connections.
+| Queryable       | Databases which support conventionally-defined tables, primary keys, and uniqueness constraints.
+| Transactional   | Databases with native support for transactions.
+
 
 
 
