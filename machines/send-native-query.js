@@ -14,7 +14,7 @@ module.exports = {
 
     nativeQuery: {
       description: 'A native query for the database.',
-      extendedDescription: 'This is oftentimes compiled from RQL using "Compile statement", however it could also originate from userland code.',
+      extendedDescription: 'This is oftentimes compiled from Waterline query syntax using "Compile statement", however it could also originate from userland code.',
       example: '*',
       required: true
     }
