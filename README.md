@@ -21,7 +21,7 @@ An abstract machinepack describing the next-gen Waterline adapter interface.
 
 ### Layers
 
-The currently planned interface includes multiple echelons of functionality an adapter author can choose to implement.  This ranges from the baseline of raw connection management and raw queries all the way up to native support for database transactions.
+The currently planned interface includes multiple echelons of functionality an adapter author can choose to implement.  This ranges from the baseline of raw connection management all the way up to native support for database transactions.
 
 The following compatibility layers are furcated based on the functionality they expose in a generic sense-- i.e. what they make possible without knowing anything about the underlying implementation.
 
@@ -54,9 +54,9 @@ In addition, adapters are free to implement extensions to this interface by addi
 
 
 
-### Official Adapters
+### Official Support
 
-Our primary focus at the moment is to finish, test, and document feature-complete implementations of this interface for MySQL, MongoDB, and PostgreSQL.
+Our primary focus at the moment is to finish, test, and document feature-complete implementations of this interface for MySQL, MongoDB, and PostgreSQL.  Early versions of some adapters will be available for testing as early as the end of this month (February 2016).
 
 
 
