@@ -43,6 +43,7 @@ module.exports = {
     notUnique: {
       friendlyName: 'Not unique',
       description: 'The provided query failed because it would violate one or more uniqueness constraints.',
+      extendedDescription: 'This exit is only relevant for databases which support conventionally-defined uniqueness constraints (i.e. if this adapter implements the "queryable" interface layer).',
       outputVariableName: 'report',
       outputDescription: 'The `columns` property is an array containing the names of columns with uniquness constraint violations. The `error` property is a JavaScript Error instance containing the raw error from the database.  The `meta` property is reserved for custom adapter-specific extensions.',
       example: {
@@ -59,6 +60,7 @@ module.exports = {
     unrecognizedTable: {
       friendlyName: 'Unrecognized table',
       description: 'The provided query failed because it mentions an unrecognized table.',
+      extendedDescription: 'This exit is only relevant for databases with conventionally-defined tables (i.e. if this adapter implements the "queryable" interface layer).',
       outputVariableName: 'report',
       outputDescription: 'The `table` property is the name of the unrecognized table.  The `error` property is a JavaScript Error instance containing the raw error from the database.  The `meta` property is reserved for custom adapter-specific extensions.',
       example: {
