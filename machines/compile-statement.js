@@ -17,7 +17,8 @@ module.exports = {
 
     statement: {
       description: 'A Waterline statement.',
-      moreInfoUrl: 'https://github.com/mikermcneil/waterline-query-builder/blob/master/docs/syntax.md',
+      extendedDescription: 'See documentation for more information.  Note that `opts` may be used for expressing adapter-specific customizations as a sibling to `from`, `where`, `select`, etc.  In other words, recursively deep within a Waterline query statement.  This is distinct from `meta`, which contains adapter-specific customizations about the statement as a whole.',
+      moreInfoUrl: 'https://github.com/particlebanana/waterline-query-builder/blob/master/docs/syntax.md',
       example: {},
       required: true
     },
