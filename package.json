@@ -28,8 +28,7 @@
       "begin-transaction",
       "commit-transaction",
       "rollback-transaction",
-      "send-query",
-      "compile-query"
+      "compile-statement"
     ]
   }
 }
