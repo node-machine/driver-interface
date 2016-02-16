@@ -18,7 +18,8 @@ An abstract machinepack describing the next-gen Waterline adapter interface.
 > If you have questions, feel free to open an issue.
 
 
-### Support
+
+### Layers
 
 The currently planned interface includes multiple echelons of functionality an adapter author can choose to implement.  This ranges from the baseline of raw connection management and raw queries all the way up to native support for database transactions.
 
@@ -36,6 +37,26 @@ The following compatibility layers are furcated based on the functionality they 
 + `.beginTransaction()`
 + `.commitTransaction()`
 + `.rollbackTransaction()`
+
+
+
+### Query Language
+
+For a sneak peek of the declarative syntax supported by `compileStatement()`, see https://github.com/mikermcneil/waterline-query-builder/blob/master/docs/syntax.md and/or have a look at @particlebanana's repos.
+
+
+
+### Extensibility
+
+Every machine in this interface supports a custom `meta` input on the way in, and each of its exits' outputs support a custom `meta` property on the way out.  The only exception is the catchall `error` exit, which is used for handling unrecognized exceptions.
+
+In addition, adapters are free to implement extensions to this interface by adding machines or making customizations WL syntax, provided those extensions are in the form of additional properties within prescribed namespaces.  The API for this is still in flux, but for some conceptual background information, see https://github.com/mikermcneil/waterline-query-builder/blob/master/docs/overview.md (warning: slightly out of date).
+
+
+
+### Official Adapters
+
+Our primary focus at the moment is to finish, test, and document feature-complete implementations of this interface for MySQL, MongoDB, and PostgreSQL.
 
 
 
