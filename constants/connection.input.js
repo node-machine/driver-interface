@@ -1,6 +1,6 @@
 /**
  * @module constants/connection.input.js
- * @type {Dictionary}
+ * @constant
  */
 module.exports = {
   friendlyName: 'Connection',

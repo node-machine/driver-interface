@@ -13,7 +13,10 @@ module.exports = {
   inputs: {
 
     connection:
-      require('../constants/connection.input')
+      require('../constants/connection.input'),
+
+    meta:
+      require('../constants/meta.input')
 
   },
 

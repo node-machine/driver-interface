@@ -17,7 +17,10 @@ module.exports = {
       extendedDescription: 'If the database does not explicitly support a connection string, then careful, step-by-step instructions for generating the appropriate connection string (such as stringifying a JSON dictionary) should be included in the `whereToGet` of this input definition.  Use `extendedDescription` and/or `moreInfoUrl` for explaining what the connection string means rather than focusing on how to generate it.',
       example: 'postgres://localhost:5432/thedatabase',
       required: true
-    }
+    },
+
+    meta:
+      require('../constants/meta.input')
 
   },
 

@@ -20,7 +20,10 @@ module.exports = {
       moreInfoUrl: 'https://github.com/mikermcneil/waterline-query-builder/blob/master/docs/syntax.md',
       example: {},
       required: true
-    }
+    },
+
+    meta:
+      require('../constants/meta.input')
 
   },
 
