@@ -35,7 +35,10 @@ module.exports = {
         result: '*',
         meta: '==='
       }
-    }
+    },
+
+    badConnection:
+      require('../constants/badConnection.exit')
 
   }
 

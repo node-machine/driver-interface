@@ -31,7 +31,10 @@ module.exports = {
       example: {
         meta: '==='
       }
-    }
+    },
+
+    badConnection:
+      require('../constants/badConnection.exit')
 
   }
 
