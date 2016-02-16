@@ -40,10 +40,15 @@ The following compatibility layers are furcated based on the functionality they 
 
 
 
-### Query Language
+### Usage
 
-For a sneak peek of the declarative syntax supported by `compileStatement()`, see https://github.com/mikermcneil/waterline-query-builder/blob/master/docs/syntax.md and/or have a look at @particlebanana's repos.
+For a sneak peek of the declarative syntax supported by `compileStatement()`, see the following links and/or have a look at @particlebanana's repos.
 
+##### Query Language
+See https://github.com/mikermcneil/waterline-query-builder/blob/master/docs/syntax.md.
+
+##### Errors
+See https://github.com/mikermcneil/waterline-query-builder/blob/master/docs/errors.md.
 
 
 ### Extensibility
