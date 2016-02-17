@@ -2,7 +2,10 @@
 
 An abstract machinepack describing the next-gen Waterline adapter interface.
 
-> Warning: This is a work in progress and will rapidly evolve over the next few days. 
+For the latest informtion and tips about the adapter interface for the **currently released version of Sails and Waterline** as of February 2016, see [https://github.com/balderdashy/sails-docs/issues/637](https://github.com/balderdashy/sails-docs/issues/637).
+
+
+> Warning: This interface is a work in progress and will rapidly evolve over the next few days. 
 > The focus right now is on providing lower-level access to the underlying database,
 > and on empowering adapter authors to be able to tune their packages without sacrificing
 > the uniformity that is necessary for Waterline core to work its magic.
