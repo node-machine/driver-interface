@@ -36,7 +36,7 @@ module.exports = {
       outputVariableName: 'report',
       outputDescription: 'The `nativeQuery` property is the compiled native query for the database.  The `meta` property is reserved for custom adapter-specific extensions.',
       example: {
-        nativeQuery: '===',
+        nativeQuery: '*',
         meta: '==='
       }
     },
