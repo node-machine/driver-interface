@@ -15,7 +15,7 @@
   "author": "The Treeline Company",
   "license": "MIT",
   "dependencies": {
-    "machine": "12.0.0"
+    "machine": "~12.0.0"
   },
   "machinepack": {
     "friendlyName": "Abstract Waterline adapter",
