@@ -17,7 +17,7 @@ module.exports = {
 
     statement: {
       description: 'A Waterline statement.',
-      extendedDescription: 'The provided statement will be coerced to a JSON-serializable value if it isn\'t one already (see [rttc.dehydrate()](https://github.com/node-machine/rttc#dehydratevalue-allownullfalse-dontstringifyfunctionsfalse)). That means any provided Date instances will be converted to timezone-agnostic ISO timestamp strings (i.e. JSON timestamps).  See documentation for usage information.  Note that `opts` may be used for expressing adapter-specific customizations as a sibling to `from`, `where`, `select`, etc.  In other words, recursively deep within a Waterline query statement.  This is distinct from `meta`, which contains adapter-specific customizations about the statement as a whole.',
+      extendedDescription: 'The provided statement will be coerced to a JSON-serializable dictionary if it isn\'t one already (see [rttc.dehydrate()](https://github.com/node-machine/rttc#dehydratevalue-allownullfalse-dontstringifyfunctionsfalse)). That means any provided Date instances will be converted to timezone-agnostic ISO timestamp strings (i.e. JSON timestamps).  See documentation for usage information.  Note that `opts` may be used for expressing adapter-specific customizations as a sibling to `from`, `where`, `select`, etc.  In other words, recursively deep within a Waterline query statement.  This is distinct from `meta`, which contains adapter-specific customizations about the statement as a whole.',
       moreInfoUrl: 'https://github.com/particlebanana/waterline-query-builder/blob/master/docs/syntax.md',
       example: {},
       required: true
