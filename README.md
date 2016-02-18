@@ -37,11 +37,12 @@ The following compatibility layers are furcated based on the functionality they 
 ##### Driveable
 + `.getConnection()`
 + `.releaseConnection()`
-+ `.sendNativeQuery()` _(`notUnique` exit will likely be removed)_
 
 ##### Queryable
++ `.sendNativeQuery()`
 + `.compileStatement()`
-+ _`.parseNativeResult()`_ _(proposed, not yet implemented)_
++ `.parseNativeQueryResult()`
++ `.parseNativeQueryError()`
 
 ##### Transactional
 + `.beginTransaction()`
@@ -69,10 +70,14 @@ See the `success` exit definition of the machines in this repo.
 ##### Errors
 See the other exit definitions of machines in this repo.
 
-> Note that errors related to compiled queries need to be handled differently than they are today.  The `notUnique` exit of `sendNativeQuery()` will probably be removed in the near future in favor of negotiating the error in `parseNativeResult()` or a separate machine such as `negotiateNativeError()`.
+In the "Queryable" interface layer, raw errors returned from sending native queries can be parsed using `parseNativeQueryError()`.  The result is one of a set of standardized error footprints:
++ **notUnique** - for when a uniqueness violation occurs; e.g. `{identity: 'notUnique', columns: ['foo']}`
++ **catchall** - for any other type of query error; e.g. `{identity: 'catchall'}`
 
 ##### Query Language
-The Queryable interface layer supports declarative syntax for most types of DQL/DML queries via `compileStatement()`, and the normalized results returned by `parseNativeResult()` _(work in progress)_.  See https://github.com/particlebanana/waterline-query-docs _(also a work in progress)_ for more information.
+The Queryable interface layer supports declarative syntax for most types of DQL/DML queries via `compileStatement()`, and the normalized result returned by `parseNativeQueryResult()`.  See https://github.com/particlebanana/waterline-query-docs for more information.
+
+
 
 
 ### Extensibility
