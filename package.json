@@ -28,7 +28,9 @@
       "begin-transaction",
       "commit-transaction",
       "rollback-transaction",
-      "compile-statement"
+      "compile-statement",
+      "parse-native-query-error",
+      "parse-native-query-result"
     ]
   }
 }
