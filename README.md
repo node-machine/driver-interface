@@ -37,10 +37,10 @@ The following compatibility layers are furcated based on the functionality they 
 ##### Driveable
 + `.getConnection()`
 + `.releaseConnection()`
++ `.sendNativeQuery()` _(`notUnique` exit will likely be removed)_
 
 ##### Queryable
 + `.compileStatement()`
-+ `.sendNativeQuery()`
 + _`.parseNativeResult()`_ _(proposed, not yet implemented)_
 
 ##### Transactional
@@ -51,7 +51,7 @@ The following compatibility layers are furcated based on the functionality they 
 
 | Interface Layer | Description
 |:----------------|:------------------------------------------------------------------------------------------------------------------|
-| Driveable       | Any database.  Doesn't necessarily need to support persistent connections.
+| Driveable       | Any database.  Doesn't necessarily need to support persistent connections (they just need to be uniquely identifiable).
 | Queryable       | Databases which support conventionally-defined tables, primary keys, and uniqueness constraints.
 | Transactional   | Databases with native support for transactions.
 
