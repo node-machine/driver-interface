@@ -69,14 +69,44 @@ See the `success` exit definition of the machines in this repo.
 
 ##### Errors
 See the other exit definitions of machines in this repo.
-
-In the "Queryable" interface layer, raw errors returned from sending native queries can be parsed using `parseNativeQueryError()`.  The result is one of a set of standardized error footprints:
-+ **notUnique** - for when a uniqueness violation occurs; e.g. `{identity: 'notUnique', columns: ['foo']}`
-+ **catchall** - for any other type of query error; e.g. `{identity: 'catchall'}`
+In the "Queryable" interface layer, raw errors returned from sending native queries can be parsed using `parseNativeQueryError()`.  The result is one of a set of standardized error footprints (see below).
 
 ##### Query Language
 The Queryable interface layer supports declarative syntax for most types of DQL/DML queries via `compileStatement()`, and the normalized result returned by `parseNativeQueryResult()`.  See https://github.com/particlebanana/waterline-query-docs for more information.
 
+
+### Query Footprints
+
+##### notUnique
+
+The query failed because it would violate one or more uniqueness constraints.
+
+```js
+{
+  identity: 'notUnique',
+  columns: [ 'email_address' ]
+}
+```
+
+| Property              | Type             | Details
+|-----------------------|------------------|:----------------------------------------------------------------------------------------------------------|
+| identity              | ((string))       | Uniquely identifies the footprint.
+| columns               | ((array))        | The `columns` property is an array containing the names of columns with uniquness constraint violations.
+
+
+##### catchall
+
+The error from the query cannot be identified as any other known kind of query footprint.
+
+```js
+{
+  identity: 'catchall'
+}
+```
+
+| Property              | Type             | Details
+|-----------------------|------------------|:----------------------------------------------------------------------------------------------------------|
+| identity              | ((string))       | Uniquely identifies the footprint.
 
 
 
