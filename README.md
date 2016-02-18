@@ -2,7 +2,7 @@
 
 An abstract machinepack describing the next-gen Waterline driver interface.
 
-For the latest informtion and tips about the adapter interface for the **currently released version of Sails and Waterline** as of February 2016, see [https://github.com/balderdashy/sails-docs/issues/637](https://github.com/balderdashy/sails-docs/issues/637).
+For the latest information and tips about the adapter interface for the **currently released version of Sails and Waterline** as of February 2016, see [https://github.com/balderdashy/sails-docs/issues/637](https://github.com/balderdashy/sails-docs/issues/637).
 
 
 > **Warning**
@@ -25,7 +25,7 @@ For the latest informtion and tips about the adapter interface for the **current
 
 ### Interface Layers
 
-The currently planned interface includes multiple echelons of functionality an adapter author can choose to implement.  This ranges from the baseline of raw connection management all the way up to native support for database transactions.
+The currently planned interface includes multiple echelons of functionality a driver author can choose to implement.  This ranges from the baseline of raw connection management all the way up to native support for database transactions.
 
 The following compatibility layers are furcated based on the functionality they expose in a generic sense-- i.e. what they make possible without knowing anything about the underlying implementation.
 
@@ -69,13 +69,13 @@ See https://github.com/mikermcneil/waterline-query-builder/blob/master/docs/erro
 
 Every machine in this interface supports a custom `meta` input on the way in, and each of its exits' outputs support a custom `meta` property on the way out.  The only exception is the catchall `error` exit, which is used for handling unrecognized exceptions.
 
-In addition, adapters are free to implement extensions to this interface by adding machines or making customizations WL syntax, provided those extensions are in the form of additional properties within prescribed namespaces.  The API for this is still in flux, but for some conceptual background information, see https://github.com/mikermcneil/waterline-query-builder/blob/master/docs/overview.md (warning: slightly out of date).
+In addition, drivers are free to implement extensions to this interface by adding machines or making customizations WL syntax, provided those extensions are in the form of additional properties within prescribed namespaces.  The API for this is still in flux, but for some conceptual background information, see https://github.com/mikermcneil/waterline-query-builder/blob/master/docs/overview.md (warning: slightly out of date).
 
 
 
 ### Official Support
 
-Our primary focus at the moment is to finish, test, and document feature-complete implementations of this interface for MySQL, MongoDB, and PostgreSQL.  Early versions of some adapters will be available for testing as early as the end of this month (February 2016).
+Our primary focus at the moment is to finish, test, and document feature-complete implementations of this interface for MySQL, MongoDB, and PostgreSQL.  Early versions of some drivers will be available for testing as early as the end of this month (February 2016).
 
 
 
