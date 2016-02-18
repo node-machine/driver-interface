@@ -4,6 +4,8 @@ An abstract machinepack describing the next-gen Waterline driver interface.
 
 For the latest information and tips about the adapter interface for the **currently released version of Sails and Waterline** as of February 2016, see [https://github.com/balderdashy/sails-docs/issues/637](https://github.com/balderdashy/sails-docs/issues/637).
 
+For a more visual explanation of the improvements, check out [this diagram](https://docs.google.com/drawings/d/11rNJuuNdTNdX_JLUxU9qnAyb5aZHlVJQCijTgSbWSgY/edit).
+
 
 > **Warning**
 >
