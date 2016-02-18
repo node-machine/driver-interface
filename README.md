@@ -1,10 +1,12 @@
-# Proposed Waterline Driver Interface
+# Waterline Driver Interface
 
 An abstract machinepack describing the next-gen Waterline driver interface.
 
 For the latest information and tips about the adapter interface for the **currently released version of Sails and Waterline** as of February 2016, see [https://github.com/balderdashy/sails-docs/issues/637](https://github.com/balderdashy/sails-docs/issues/637).
 
-For a more visual explanation of the improvements, check out [this diagram](https://docs.google.com/drawings/d/11rNJuuNdTNdX_JLUxU9qnAyb5aZHlVJQCijTgSbWSgY/edit).
+For a more visual explanation of the improvements coming in the next version of Waterline, check out [this diagram](https://docs.google.com/drawings/d/11rNJuuNdTNdX_JLUxU9qnAyb5aZHlVJQCijTgSbWSgY/edit).
+
+For historical perspective, see https://github.com/mikermcneil/waterline-query-builder/blob/master/docs/ and https://github.com/mikermcneil/waterline2.
 
 
 > **Warning**
@@ -58,21 +60,28 @@ The following compatibility layers are furcated based on the functionality they 
 
 ### Usage
 
-For a sneak peek of the declarative syntax supported by `compileStatement()`, see the following links and/or have a look at @particlebanana's repos.
+##### Methods
+See the machines in this repo.
 
-##### Query Language
-See https://github.com/mikermcneil/waterline-query-builder/blob/master/docs/syntax.md.
+##### Expected results
+See the `success` exit definition of the machines in this repo.
 
 ##### Errors
-See https://github.com/mikermcneil/waterline-query-builder/blob/master/docs/errors.md.
+See the other exit definitions of machines in this repo.
+
+> Note that errors related to compiled queries need to be handled differently than they are today.  The `notUnique` exit of `sendNativeQuery()` will probably be removed in the near future in favor of negotiating the error in `parseNativeResult()` or a separate machine such as `negotiateNativeError()`.
+
+##### Query Language
+The Queryable interface layer supports declarative syntax for most types of DQL/DML queries via `compileStatement()`, and the normalized results returned by `parseNativeResult()` _(work in progress)_.  See https://github.com/particlebanana/waterline-query-docs _(also a work in progress)_ for more information.
 
 
 ### Extensibility
 
 Every machine in this interface supports a custom `meta` input on the way in, and each of its exits' outputs support a custom `meta` property on the way out.  The only exception is the catchall `error` exit, which is used for handling unrecognized exceptions.
 
-In addition, drivers are free to implement extensions to this interface by adding machines or making customizations WL syntax, provided those extensions are in the form of additional properties within prescribed namespaces.  The API for this is still in flux, but for some conceptual background information, see https://github.com/mikermcneil/waterline-query-builder/blob/master/docs/overview.md (warning: slightly out of date).
+Drivers are free to implement extensions to this interface with customizations to WL syntax, provided those extensions are in the form of additional properties within prescribed namespaces: i.e. the `opts` property, which is available recursively deep at each subquery level (as a sibling to `from`/`select`/`where`/`limit`/etc).  The exact API for this is still in flux, but for some conceptual background information, see https://github.com/mikermcneil/waterline-query-builder/blob/master/docs/overview.md (warning: slightly out of date).
 
+Finally, drivers can add their own custom machines-- although this should be used with care, in case custom machines clash with future additions to the specification.  For similar reasons, drivers should not add new exits or inputs to official machines, and the semantic skeleton (`friendlyName`, `example`,`required`) of standardized inputs and exits should not be changed (although `description`, `extendedDescription`, `moreInfoUrl`, `outputDescription`, `whereToGet`, and `outputVariableName` are all fair game).
 
 
 ### Official Support
@@ -83,5 +92,5 @@ Our primary focus at the moment is to finish, test, and document feature-complet
 
 ## License
 
-MIT &copy; 2016 contributors
+MIT &copy; 2016 [Cody Stoltman](http://github.com/particlebanana), [Mike McNeil](http://github.com/mikermcneil) and contributors
 
