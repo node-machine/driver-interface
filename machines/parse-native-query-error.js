@@ -39,8 +39,8 @@ module.exports = {
   exits: {
 
     success: {
-      description: 'The normalization was successful.',
-      extendedDescription: 'If the error cannot be normalized into any other more specific footprint, then the catchall footprint will be used.  The footprint (`footprint`) will be coerced to a JSON-serializable dictionary if it isn\'t one already (see [rttc.dehydrate()](https://github.com/node-machine/rttc#dehydratevalue-allownullfalse-dontstringifyfunctionsfalse)). That means any Error instances therein will be converted to stacktrace strings.',
+      description: 'The normalization is complete.  If the error cannot be normalized into any other more specific footprint, then the catchall footprint will be returned.',
+      extendedDescription: 'The footprint (`footprint`) will be coerced to a JSON-serializable dictionary if it isn\'t one already (see [rttc.dehydrate()](https://github.com/node-machine/rttc#dehydratevalue-allownullfalse-dontstringifyfunctionsfalse)). That means any Error instances therein will be converted to stacktrace strings.',
       outputVariableName: 'report',
       outputDescription: 'The `footprint` property is the normalized "footprint" representing the provided raw error.  Conforms to one of a handful of standardized footprint types expected by the Waterline driver interface.   The `meta` property is reserved for custom adapter-specific extensions.',
       example: {
