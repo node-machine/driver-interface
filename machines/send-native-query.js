@@ -43,23 +43,7 @@ module.exports = {
     },
 
     badConnection:
-      require('../constants/badConnection.exit'),
-
-    notUnique: {
-      friendlyName: 'Not unique',
-      description: 'The provided query failed because it would violate one or more uniqueness constraints.',
-      outputVariableName: 'report',
-      outputDescription: 'The `columns` property is an array containing the names of columns with uniquness constraint violations. The `error` property is a JavaScript Error instance containing the raw error from the database.  The `meta` property is reserved for custom adapter-specific extensions.',
-      example: {
-        // For implementation help w/ building `columns` for a few particular adapters, see:
-        //  • https://github.com/balderdashy/sails-mongo/blob/0656ff3471339b8bae299e6fd8b7b379f7a34c15/lib/utils.js#L182
-        //  • https://github.com/balderdashy/sails-mysql/blob/2c414f1191c3595df2cea8e40259811eb3ca05f9/lib/adapter.js#L1223
-        //  • https://github.com/balderdashy/sails-postgresql/blob/a51b3643777dcf1af5517acbf76e09612d36b301/lib/adapter.js#L1308
-        columns: [ 'email_address' ],
-        error: '===',
-        meta: '==='
-      }
-    }
+      require('../constants/badConnection.exit')
 
   }
 
