@@ -9,21 +9,14 @@ For a more visual explanation of the improvements coming in the next version of 
 For historical perspective, see https://github.com/mikermcneil/waterline-query-builder/blob/master/docs/ and https://github.com/mikermcneil/waterline2.
 
 
-> **Warning**
->
-> This interface is a work in progress and will rapidly evolve over the next few days. 
-> The focus right now is on providing lower-level access to the underlying database,
-> and on empowering adapter authors to be able to tune their packages without sacrificing
-> the uniformity that is necessary for Waterline core to work its magic.
->
-> Note that machinepacks implementing this interface are not currently usable as drop in replacements for
-> existing adapters in Sails apps or other apps using vanilla Waterline.  The interface specced here is
-> not high-level enough to fulfill the full Waterline adapter interface today-- rather the goal is for it
-> to gradually extend underlying APIs from the inside out.  Tthe first generation of drivers implemented
-> using this spec will be used _within existing Waterline adapters_. They can also be required and used
-> _directly_ from [any Node.js script](http://node-machine.org/).
->
-> If you have questions, feel free to open an issue.
+### Available Drivers
+
+| Datasource | Repo                                                 | Interface Layers Supported           |
+|------------|------------------------------------------------------|--------------------------------------|
+| MongoDB    | http://github.com/particlebanana/machinepack-mongodb | Driveable, Queryable
+| PostgreSQL | http://github.com/mikermcneil/machinepack-postgresql | Driveable, Queryable, Transactional
+| MySQL      | _todo_                                               | Driveable, Queryable, Transactional
+| Redis      | _todo_                                               | Driveable
 
 
 
@@ -56,6 +49,23 @@ The following compatibility layers are furcated based on the functionality they 
 | Queryable       | Databases which support conventionally-defined tables, primary keys, and uniqueness constraints.
 | Transactional   | Databases with native support for transactions.
 
+
+
+> **Warning**
+>
+> This interface is a work in progress and will rapidly evolve over the next few days. 
+> The focus right now is on providing lower-level access to the underlying database,
+> and on empowering adapter authors to be able to tune their packages without sacrificing
+> the uniformity that is necessary for Waterline core to work its magic.
+>
+> Note that machinepacks implementing this interface are not currently usable as drop in replacements for
+> existing adapters in Sails apps or other apps using vanilla Waterline.  The interface specced here is
+> not high-level enough to fulfill the full Waterline adapter interface today-- rather the goal is for it
+> to gradually extend underlying APIs from the inside out.  Tthe first generation of drivers implemented
+> using this spec will be used _within existing Waterline adapters_. They can also be required and used
+> _directly_ from [any Node.js script](http://node-machine.org/).
+>
+> If you have questions, feel free to open an issue.
 
 
 
