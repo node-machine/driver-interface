@@ -108,42 +108,46 @@ The following compatibility layers are furcated based on the functionality they 
 ##### Methods
 See the machines in this repo.
 
+##### Expected Return Values
+See the `success` exit definition of the machines in this repo and the section on [Query Results](#Query-Results) below for more information.
 
 ##### Errors
-See the other exit definitions of machines in this repo.
-In the "Queryable" interface layer, raw errors returned from sending native queries can be parsed using `parseNativeQueryError()`.  The output is one of a set of standardized error footprints (see the "Footprints" section below).
+See the other exit definitions of machines in this repo and/or the section on [Footprints](#Footprints) below for more information.
 
 ##### Query Language
 The Queryable interface layer supports declarative syntax for most types of DQL/DML queries via `compileStatement()`, and the normalized result returned by `parseNativeQueryResult()`.  See https://github.com/particlebanana/waterline-query-docs for more information.
 
-##### Expected Return Values
-See the `success` exit definition of the machines in this repo.
-In the "Queryable" interface layer, raw results returned from sending native queries can be parsed using `parseNativeQueryResult()`.  The normalized result depends on the query type:
 
 
-| Query Type            | RTTC Exemplar                    | Additional Info
-|-----------------------|----------------------------------|:----------------------------------------------------------------------------------------------------------|
+### Query Results
+In the "Queryable" interface layer, raw results returned from sending native queries can be parsed using `parseNativeQueryResult()`. The normalized result depends on the query type:
+
+
+| Query Type            | RTTC Exemplar                                 | Additional Info
+|:----------------------|:----------------------------------------------|:------------------------------------------|
 | insert                | `{ inserted: '*' }`              | The `'*'` is the primary key value of the newly inserted record.  It is either a number or a string.
 | select                | `[ {} ]`                         | Each `{}` is an individual record returned from the database.
 | update                | `{ numRecordsUpdated: 7 }`       |
 | delete                | `{ numRecordsDeleted: 13 }`      |
 
 
-##### Errors
-See the other exit definitions of machines in this repo.
-In the "Queryable" interface layer, raw errors returned from sending native queries can be parsed using `parseNativeQueryError()`.  The result is one of a set of standardized error footprints (see below).
-
-##### Query Language
-The Queryable interface layer supports declarative syntax for most types of DQL/DML queries via `compileStatement()`, and the normalized result returned by `parseNativeQueryResult()`.  See https://github.com/particlebanana/waterline-query-docs for more information.
 
 
 ### Footprints
 
+In the "Queryable" interface layer, raw errors returned from sending native queries can be parsed using `parseNativeQueryError()`.  The output is one of a set of standardized error footprints:
+
+| Footprint             | Source Query Type(s)     | Error Description
+|-----------------------|--------------------------|:-----------------------------------------------------------------------------------|
+| notUnique             | `update`, `create`       | The query failed because it would violate one or more uniqueness constraints.
+| catchall              | _any_                    | The error from the query cannot be identified as any other known kind of query footprint.
+
+
 ##### notUnique
 
-> _Can occur with "insert" and "update" query types._
-
 The query failed because it would violate one or more uniqueness constraints.
+
+> _Can occur with "insert" and "update" query types._
 
 ```js
 {
@@ -160,9 +164,9 @@ The query failed because it would violate one or more uniqueness constraints.
 
 ##### catchall
 
-> _Can occur with any type of query._
-
 The error from the query cannot be identified as any other known kind of query footprint.
+
+> _Can occur with any type of query._
 
 ```js
 {
