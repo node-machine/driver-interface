@@ -253,6 +253,9 @@ The error from the query cannot be identified as any other known kind of query f
 
 Our primary focus at the moment is to finish, test, and document feature-complete implementations of this interface for MySQL, MongoDB, and PostgreSQL.  Early versions of some drivers will be available for testing as early as the end of this month (February 2016).
 
+> See https://github.com/particlebanana/waterline-query-docs/issues/2#issuecomment-186622547 for more discussion about the future of this specification and related APIs in Waterline and the Node-Machine project.
+
+
 
 
 ## License
