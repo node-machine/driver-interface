@@ -1,6 +1,6 @@
 {
   "name": "waterline-driver-interface",
-  "version": "1.0.0-pre1",
+  "version": "1.0.0",
   "description": "Abstract machines describing the Waterline driver API.",
   "scripts": {
     "test": "echo 'no tests'"
