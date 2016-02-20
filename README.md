@@ -7,8 +7,6 @@ Abstract machines describing the Waterline driver API.
 
 ## Available Drivers
 
-> Waterline drivers are a not-yet-released feature as of WL>=v0.12; however they _can actually be used directly_ from any Node.js application-- including an app using an earlier version of Waterline.
-
 | Datasource | Repo                                                 | Interface Layers Supported           |
 |------------|------------------------------------------------------|--------------------------------------|
 | MongoDB    | http://github.com/particlebanana/machinepack-mongodb | Driveable, Queryable
@@ -16,6 +14,7 @@ Abstract machines describing the Waterline driver API.
 | MySQL      | _todo_                                               | Driveable, Queryable, Transactional
 | Redis      | https://github.com/mikermcneil/machinepack-redis     | Driveable
 
+> Waterline drivers are a not-yet-released feature as of WL>=v0.12; however they _can actually be used directly_ from any Node.js application-- including an app using an earlier version of Waterline.
 
 
 ## Purpose
