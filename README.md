@@ -16,7 +16,7 @@ For historical perspective, see https://github.com/mikermcneil/waterline-query-b
 | MongoDB    | http://github.com/particlebanana/machinepack-mongodb | Driveable, Queryable
 | PostgreSQL | http://github.com/mikermcneil/machinepack-postgresql | Driveable, Queryable, Transactional
 | MySQL      | _todo_                                               | Driveable, Queryable, Transactional
-| Redis      | _todo_                                               | Driveable
+| Redis      | https://github.com/mikermcneil/machinepack-redis     | Driveable
 
 
 
