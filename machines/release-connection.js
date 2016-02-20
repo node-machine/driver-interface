@@ -7,7 +7,7 @@ module.exports = {
   description: 'Release an active database connection.',
 
 
-  extendedDescription: 'Depending on the implementation of this adapter, this might release the connection back into the pool or close it entirely.  Regardless, if the provided connection has a transaction started, be sure to end the transaction by either committing it or rolling it back before releasing the connection.',
+  extendedDescription: 'Depending on the implementation of this driver, this might release the connection back into the pool or close it entirely.  Regardless, if the provided connection has a transaction started, be sure to end the transaction by either committing it or rolling it back before releasing the connection.',
 
 
   inputs: {
@@ -27,7 +27,7 @@ module.exports = {
       description: 'The connection was released and is no longer active.',
       extendedDescription: 'The provided connection may no longer be used for any subsequent queries.',
       outputVariableName: 'report',
-      outputDescription: 'The `meta` property is reserved for custom adapter-specific extensions.',
+      outputDescription: 'The `meta` property is reserved for custom driver-specific extensions.',
       example: {
         meta: '==='
       }

@@ -1,7 +1,7 @@
 {
-  "name": "abstract-adapter",
+  "name": "waterline-driver-interface",
   "version": "1.0.0-pre1",
-  "description": "Abstract machinepack describing the next-gen Waterline adapter interface.",
+  "description": "Abstract machines describing the Waterline driver API.",
   "scripts": {
     "test": "echo 'no tests'"
   },
@@ -10,7 +10,7 @@
     "waterline",
     "machines",
     "machinepack",
-    "database-adapter"
+    "database-driver"
   ],
   "author": "The Treeline Company",
   "license": "MIT",
@@ -18,7 +18,7 @@
     "machine": "~12.0.0"
   },
   "machinepack": {
-    "friendlyName": "Abstract Waterline adapter",
+    "friendlyName": "Abstract Waterline driver",
     "machineDir": "machines/",
     "isAbstract": true,
     "machines": [

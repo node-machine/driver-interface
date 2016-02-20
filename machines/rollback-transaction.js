@@ -27,7 +27,7 @@ module.exports = {
       description: 'The transaction was successfully rolled back.',
       extendedDescription: 'Subsequent queries on this connection will no longer be transactional unless a new transaction is begun.',
       outputVariableName: 'report',
-      outputDescription: 'The `meta` property is reserved for custom adapter-specific extensions.',
+      outputDescription: 'The `meta` property is reserved for custom driver-specific extensions.',
       example: {
         meta: '==='
       }
