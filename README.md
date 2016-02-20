@@ -3,25 +3,18 @@
 Abstract machines describing the Waterline driver API.
 
 > For the latest information and tips about the *adapter** interface for the _currently released version of Sails and Waterline_ as of February 2016, see [https://github.com/balderdashy/sails-docs/issues/637](https://github.com/balderdashy/sails-docs/issues/637).
->
-> Waterline drivers are a new feature as of WL>=v0.12; however they can actually be used directly from any Node.js application-- including an app using an earlier version of Waterline.
->
->
-> **Warning**
->
-> This interface is a work in progress and will rapidly evolve over the next few days. 
-> The focus right now is on providing lower-level access to the underlying database,
-> and on empowering adapter authors to be able to tune their packages without sacrificing
-> the uniformity that is necessary for Waterline core to work its magic.
->
-> Note that machinepacks implementing this interface are not currently usable as drop in replacements for
-> existing adapters in Sails apps or other apps using vanilla Waterline.  The interface specced here is
-> not high-level enough to fulfill the full Waterline adapter interface today-- rather the goal is for it
-> to gradually extend underlying APIs from the inside out.  Tthe first generation of drivers implemented
-> using this spec will be used _within existing Waterline adapters_. They can also be required and used
-> _directly_ from [any Node.js script](http://node-machine.org/).
->
-> If you have questions, feel free to open an issue.
+
+
+## Available Drivers
+
+> Waterline drivers are a not-yet-released feature as of WL>=v0.12; however they _can actually be used directly_ from any Node.js application-- including an app using an earlier version of Waterline.
+
+| Datasource | Repo                                                 | Interface Layers Supported           |
+|------------|------------------------------------------------------|--------------------------------------|
+| MongoDB    | http://github.com/particlebanana/machinepack-mongodb | Driveable, Queryable
+| PostgreSQL | http://github.com/mikermcneil/machinepack-postgresql | Driveable, Queryable, Transactional
+| MySQL      | _todo_                                               | Driveable, Queryable, Transactional
+| Redis      | https://github.com/mikermcneil/machinepack-redis     | Driveable
 
 
 
@@ -61,18 +54,7 @@ Finally, drivers can add their own custom machines-- although this should be use
 
 
 
-## Available Drivers
-
-| Datasource | Repo                                                 | Interface Layers Supported           |
-|------------|------------------------------------------------------|--------------------------------------|
-| MongoDB    | http://github.com/particlebanana/machinepack-mongodb | Driveable, Queryable
-| PostgreSQL | http://github.com/mikermcneil/machinepack-postgresql | Driveable, Queryable, Transactional
-| MySQL      | _todo_                                               | Driveable, Queryable, Transactional
-| Redis      | https://github.com/mikermcneil/machinepack-redis     | Driveable
-
-
-
-## Interface Layers
+#### Interface Layers
 
 The currently planned interface includes multiple echelons of functionality a driver author can choose to implement.  This ranges from the baseline of raw connection management all the way up to native support for database transactions.
 
@@ -105,6 +87,24 @@ The following compatibility layers are furcated based on the functionality they 
 
 ## Usage
 
+>
+> **Warning**
+>
+> This interface is a work in progress and will rapidly evolve over the next few days. 
+> The focus right now is on providing lower-level access to the underlying database,
+> and on empowering adapter authors to be able to tune their packages without sacrificing
+> the uniformity that is necessary for Waterline core to work its magic.
+>
+> Note that machinepacks implementing this interface are not currently usable as drop in replacements for
+> existing adapters in Sails apps or other apps using vanilla Waterline.  The interface specced here is
+> not high-level enough to fulfill the full Waterline adapter interface today-- rather the goal is for it
+> to gradually extend underlying APIs from the inside out.  Tthe first generation of drivers implemented
+> using this spec will be used _within existing Waterline adapters_. They can also be required and used
+> _directly_ from [any Node.js script](http://node-machine.org/).
+>
+> If you have questions, feel free to open an issue.
+
+
 #### Methods
 See the machines in this repo.
 
@@ -123,12 +123,12 @@ The Queryable interface layer supports declarative syntax for most types of DQL/
 In the "Queryable" interface layer, raw results returned from sending native queries can be parsed using `parseNativeQueryResult()`. The normalized result depends on the query type:
 
 
-| Query Type            |
-|:----------------------|
-| insert                |
-| select                |
-| update                |
-| delete                |
+| Source Query          | Result Type        |
+|:----------------------|--------------------|
+| insert                | ((dictionary))     |
+| select                | ((array))          |
+| update                | ((dictionary))     |
+| delete                | ((dictionary))     |
 
 
 #### insert
@@ -207,7 +207,7 @@ The successful result data from a query that deleted a set of existing records.
 
 In the "Queryable" interface layer, raw errors returned from sending native queries can be parsed using `parseNativeQueryError()`.  The output is one of a set of standardized error footprints:
 
-| Footprint             | Source Query Type(s)     | Error Description
+| Footprint             | Potential Source Queries | Error Description
 |-----------------------|--------------------------|:-----------------------------------------------------------------------------------|
 | notUnique             | `update`, `create`       | The query failed because it would violate one or more uniqueness constraints.
 | catchall              | _any_                    | The error from the query cannot be identified as any other known kind of query footprint.
