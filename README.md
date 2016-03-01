@@ -228,7 +228,7 @@ The query failed because it would violate one or more uniqueness constraints.
 | Property              | Type             | Details
 |-----------------------|------------------|:----------------------------------------------------------------------------------------------------------|
 | identity              | ((string))       | Uniquely identifies the footprint.
-| keys                  | ((array))        | An array of the names of keys where uniqueness constraint violations occurred.  Oftentimes this is a list of column names, but depending on the database keys might have custom names (MySQL) or be specified by a special identifier like `'PRIMARY'` (PostgreSQL).
+| keys                  | ((array))        | An array of the names of keys where uniqueness constraint violations occurred.  Oftentimes this is a list of column names, but depending on the database keys might have custom names or be specified by a special identifier like `'PRIMARY'` (e.g. MySQL).
 
 > **Important:**
 > The `keys` array is not guaranteed to contain _all_ of the constraints which were violated.
