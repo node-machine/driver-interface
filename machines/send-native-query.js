@@ -42,6 +42,16 @@ module.exports = {
       }
     },
 
+    queryFailed: {
+      description: 'The database returned an error when attempting to execute the native query.',
+      outputVariableName: 'report',
+      outputDescription: 'The `error` property is a JavaScript Error instance with more details about what went wrong.  The `meta` property is reserved for custom driver-specific extensions.',
+      example: {
+        error: '===',
+        meta: '==='
+      }
+    },
+
     badConnection:
       require('../constants/badConnection.exit')
 
