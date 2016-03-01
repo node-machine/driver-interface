@@ -208,7 +208,7 @@ In the "Queryable" interface layer, raw errors returned from sending native quer
 
 | Footprint             | Potential Source Queries | Error Description
 |-----------------------|--------------------------|:-----------------------------------------------------------------------------------|
-| notUnique             | `update`, `create`       | The query failed because it would violate one or more uniqueness constraints.
+| notUnique             | `update`, `insert`       | The query failed because it would violate one or more uniqueness constraints.
 | catchall              | _any_                    | The error from the query cannot be identified as any other known kind of query footprint.
 
 
@@ -221,14 +221,14 @@ The query failed because it would violate one or more uniqueness constraints.
 ```js
 {
   identity: 'notUnique',
-  columns: [ 'email_address' ]
+  keys: [ 'email_address' ]
 }
 ```
 
 | Property              | Type             | Details
 |-----------------------|------------------|:----------------------------------------------------------------------------------------------------------|
 | identity              | ((string))       | Uniquely identifies the footprint.
-| columns               | ((array))        | The `columns` property is an array containing the names of columns with uniquness constraint violations.
+| keys                  | ((array))        | The `keys` property is an array of strings.  It contains the names of keys where uniqueness constraint violations occurred.  Oftentimes this is a list of column names, but depending on the database keys might have custom names (MySQL) or be specified by a special identifier like `'PRIMARY KEY'` (PostgreSQL).
 
 
 #### catchall
