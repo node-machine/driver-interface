@@ -221,14 +221,19 @@ The query failed because it would violate one or more uniqueness constraints.
 ```js
 {
   identity: 'notUnique',
-  keys: [ 'email_address' ]
+  keys: [ 'email_address', 'PRIMARY' ]
 }
 ```
 
 | Property              | Type             | Details
 |-----------------------|------------------|:----------------------------------------------------------------------------------------------------------|
 | identity              | ((string))       | Uniquely identifies the footprint.
-| keys                  | ((array))        | The `keys` property is an array of strings.  It contains the names of keys where uniqueness constraint violations occurred.  Oftentimes this is a list of column names, but depending on the database keys might have custom names (MySQL) or be specified by a special identifier like `'PRIMARY KEY'` (PostgreSQL).
+| keys                  | ((array))        | An array of the names of keys where uniqueness constraint violations occurred.  Oftentimes this is a list of column names, but depending on the database keys might have custom names (MySQL) or be specified by a special identifier like `'PRIMARY'` (PostgreSQL).
+
+> **Important:**
+> The `keys` array is not guaranteed to contain _all_ of the constraints which were violated.
+> For example, even if `keys` is `['PRIMARY']`, there might be other keys with constraint
+> violations which would be violated by the query as well.
 
 
 #### catchall
