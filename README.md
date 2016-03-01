@@ -11,7 +11,7 @@ For the latest information and tips about the **adapter interface for the curren
 |------------|------------------------------------------------------|--------------------------------------|
 | MongoDB    | http://github.com/particlebanana/machinepack-mongodb | Driveable, Queryable
 | PostgreSQL | http://github.com/mikermcneil/machinepack-postgresql | Driveable, Queryable, Transactional
-| MySQL      | _todo_                                               | Driveable, Queryable, Transactional
+| MySQL      | http://github.com/mikermcneil/machinepack-mysql      | Driveable, Queryable, Transactional
 | Redis      | https://github.com/mikermcneil/machinepack-redis     | Driveable
 
 > Waterline drivers are a not-yet-released feature as of WL>=v0.12; however they _can actually be used directly_ from any Node.js application-- including an app using an earlier version of Waterline.
