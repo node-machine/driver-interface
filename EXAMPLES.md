@@ -8,7 +8,7 @@
 
 ## One-off connections
 
-##### In a request or script or whatever
+##### In a route/action or script or whatever
 
 ```javascript
 MySQL.createManager({
@@ -56,7 +56,7 @@ MySQL.createManager({
 ```
 
 
-##### In a request or script or whatever
+##### In a route/action or script or whatever
 
 ```javascript
 MySQL.getConnection({
