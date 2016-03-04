@@ -11,10 +11,11 @@ module.exports = {
   'The `manager` instance returned by this method contains any configuration that is necessary '+
   'for communicating with the database and establishing connections (e.g. host, user, password) '+
   'as well as any other relevant metadata.  The manager will often also contain a reference '+
-  'to some kind of native container (e.g. a connection pool). '+
+  'to some kind of native container (e.g. a connection pool).\n'+
+  '\n'+
   'Note that a manager instance does not necessarily need to correspond with a pool though--'+
   'it might simply be a container for storing config, or it might refer to multiple pools '+
-  '(e.g. a ClusterPool from felixge\'s `mysql` package)',
+  '(e.g. a ClusterPool from felixge\'s `mysql` package).',
 
 
   inputs: {
@@ -58,6 +59,12 @@ module.exports = {
 
     success: {
       description: 'The manager was successfully created.',
+      extendedDescription:
+        'The new manager should be passed in to `getConnection()`.'+
+        'Note that _no matter what_, this manager must be capable of '+
+        'spawning an infinite number of connections (i.e. via `getConnection()`).  '+
+        'The implementation of how exactly it does this varies on a driver-by-driver '+
+        'basis; and it may also vary based on the configuration passed into the `meta` input.',
       outputVariableName: 'report',
       outputDescription: 'The `manager` property is a manager instance that will be passed into `getConnection()`. The `meta` property is reserved for custom driver-specific extensions.',
       example: {
