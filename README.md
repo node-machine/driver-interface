@@ -61,6 +61,8 @@ The following compatibility layers are furcated based on the functionality they 
 
 
 #### Driveable
++ `.createManager()`
++ `.destroyManager()`
 + `.getConnection()`
 + `.releaseConnection()`
 

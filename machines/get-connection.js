@@ -12,10 +12,11 @@ module.exports = {
 
   inputs: {
 
-    connectionString: {
-      description: 'A string containing all metadata and credentials necessary for connecting to the database.',
-      extendedDescription: 'If the database does not explicitly support a connection string, then careful, step-by-step instructions for generating the appropriate connection string (such as stringifying a JSON dictionary) should be included in the `whereToGet` of this input definition.  Use `extendedDescription` and/or `moreInfoUrl` for explaining what the connection string means rather than focusing on how to generate it.',
-      example: 'postgres://localhost:5432/thedatabase',
+    manager: {
+      friendlyName: 'Manager',
+      description: 'The connection manager instance to acquire the connection from.',
+      extendedDescription: 'Only managers built using the `createManager()` method of this driver are supported.  Also, the database connection manager instance provided must not have been destroyed--i.e. once `destroyManager()` is called on a manager, no more connections can be acquired from it (also note that all existing connections become inactive-- see `destroyManager()` for more on that).',
+      example: '===',
       required: true
     },
 
@@ -29,7 +30,7 @@ module.exports = {
 
     success: {
       description: 'A connection was successfully acquired.',
-      extendedDescription: 'This connection should be eventually released.  Otherwise, it may time out.  It is not a good idea to rely on database connections timing out-- be sure to release this connection when finished with it!',
+      extendedDescription: 'This connection should be eventually released, or its manager should be destroyed.  Otherwise, it may time out.  It is not a good idea to rely on database connections timing out-- be sure to release this connection (or destroy its manager) when finished with it!',
       outputVariableName: 'report',
       outputDescription: 'The `connection` property is an active connection to the database.  The `meta` property is reserved for custom driver-specific extensions.',
       example: {
@@ -38,28 +39,23 @@ module.exports = {
       }
     },
 
-    malformed: {
-      description: 'The provided connection string is malformed (the driver DID NOT ATTEMPT to acquire a connection).',
-      extendedDescription: 'The format of connection strings varies across different databases and their drivers.  This exit indicates that the provided string is not valid as per the custom rules of this driver.',
+    failed: {
+      friendlyName: 'Bad manager',
+      description: 'Could not acquire a connection to the database because the provided connection manager is no longer active; or possibly never was.',
+      extendedDescription:
+        'Usually, this means the manager has already been destroyed.  But depending on the driver '+
+        'it could also mean that database cannot be accessed.  In production, this can mean that the database '+
+        'server(s) became overwhelemed or were shut off while some business logic was in progress.'+
+        '\n'+
+        'Note that the underlying interpretation of this exit varies depending on the driver\'s implementation. '+
+        'It also might depend on any database-specific metadata within the provided connection manager.  For example, '+
+        'a driver might allow a few different types of connection managers to be created.  In some cases, the connection manager '+
+        'communicates with the database when it is created, but in others, it does not communicate with the database until '+
+        'a connection is actually acquired w/ `getConnection()`. The latter case is a prime example of when this exit '+
+        'would be called. Finally, as hinted at above, it also might be called if the pool encapsulated within the provided '+
+        'connection manager is no longer active (e.g. because it has already been destroyed).',
       outputVariableName: 'report',
-      outputDescription: 'The `error` property is a JavaScript Error instance explaining that (and preferably "why") the provided connection string is invalid.  The `meta` property is reserved for custom driver-specific extensions.',
-      example: {
-        error: '===',
-        meta: '==='
-      }
-    },
-
-    failedToConnect: {
-      description: 'Could not acquire a connection to the database using the specified connection string.',
-      extendedDescription: 'This might mean any of the following:\n'+
-      ' + the credentials encoded in the connection string are incorrect\n'+
-      ' + there is no database server running at the provided host (i.e. even if it is just that the database process needs to be started)\n'+
-      ' + there is no software "database" with the specified name running on the server\n'+
-      ' + the provided connection string does not have necessary access rights for the specified software "database"\n'+
-      ' + this Node.js process could not connect to the database, perhaps because of firewall/proxy settings\n'+
-      ' + any other miscellaneous connection error',
-      outputVariableName: 'report',
-      outputDescription: 'The `error` property is a JavaScript Error instance explaining that a connection could not be made.  The `meta` property is reserved for custom driver-specific extensions.',
+      outputDescription: 'The `error` property is a JavaScript Error instance with more information and a stack trace.  The `meta` property is reserved for custom driver-specific extensions.',
       example: {
         error: '===',
         meta: '==='
