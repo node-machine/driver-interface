@@ -73,8 +73,7 @@ module.exports = {
       example: {
         error: '===',
         meta: '==='
-      },
-      forImplementors:
+      }
     }
 
   }
