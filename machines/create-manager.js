@@ -45,8 +45,7 @@ module.exports = {
         '  console.warn(\'Unexpected failure in database manager:\',err);\n'+
         '}\n'+
         '```',
-      example: '->',
-      required: true
+      example: '->'
     },
 
     meta:
