@@ -7,7 +7,11 @@ module.exports = {
   description: 'Get an active connection to the database.',
 
 
-  extendedDescription: 'This may involve opening a new connection, or aquiring an already-open connection from an existing pool.  The implementation is left up to the driver.',
+  extendedDescription:
+    'Depending on what driver this is, and the config of the specified connection manager, `getConnection()` '+
+    'may involve opening a new connection, aquiring an already-open connection from an existing pool, or even '+
+    'just returning a mock connection (e.g. a dictionary containing host/port/credentials-- for connection-less '+
+    'database servers like ElasticSearch).',
 
 
   inputs: {
@@ -15,7 +19,12 @@ module.exports = {
     manager: {
       friendlyName: 'Manager',
       description: 'The connection manager instance to acquire the connection from.',
-      extendedDescription: 'Only managers built using the `createManager()` method of this driver are supported.  Also, the database connection manager instance provided must not have been destroyed--i.e. once `destroyManager()` is called on a manager, no more connections can be acquired from it (also note that all existing connections become inactive-- see `destroyManager()` for more on that).',
+      extendedDescription:
+        'Only managers built using the `createManager()` method of this driver are supported. '+
+        'Also, the database connection manager instance provided must not have been destroyed--'+
+        'i.e. once `destroyManager()` is called on a manager, no more connections can be acquired '+
+        'from it (also note that all existing connections become inactive-- see `destroyManager()` '+
+        'for more on that).',
       example: '===',
       required: true
     },
@@ -39,27 +48,33 @@ module.exports = {
       }
     },
 
-    badManager: {
-      friendlyName: 'Bad manager',
-      description: 'Could not acquire a connection to the database because the provided connection manager is no longer active; or possibly never was.',
+    failed: {
+      friendlyName: 'Failed',
+      description: 'Could not acquire a connection to the database via the provided connection manager.',
       extendedDescription:
-        'Usually, this means the manager has already been destroyed.  But depending on the driver '+
-        'it could also mean that database cannot be accessed.  In production, this can mean that the database '+
-        'server(s) became overwhelemed or were shut off while some business logic was in progress.'+
+        'If this exit is called, it might mean any of the following:\n'+
+        ' + there is no database server running at manager\'s configured host (i.e. even if it is just that the database process needs to be started)\n'+
+        ' + this Node.js process could not connect to the database server, perhaps because of firewall/proxy settings\n'+
+        ' + the database server doesn\'t recognize the configured "database" in the manager\'s connection string\n'+
+        ' + the credentials encoded in the manager\'s connection string are unrecognized or have insufficient access rights for this database\n'+
+        ' + the manager is no longer active, e.g. because it has already been destroyed, timed out, or the db server went offline\n'+
+        ' + any other miscellaneous connection error'+
         '\n'+
-        'Note that the underlying interpretation of this exit varies depending on the driver\'s implementation. '+
-        'It also might depend on any database-specific metadata within the provided connection manager.  For example, '+
-        'a driver might allow a few different types of connection managers to be created.  In some cases, the connection manager '+
-        'communicates with the database when it is created, but in others, it does not communicate with the database until '+
-        'a connection is actually acquired w/ `getConnection()`. The latter case is a prime example of when this exit '+
-        'would be called. Finally, as hinted at above, it also might be called if the pool encapsulated within the provided '+
-        'connection manager is no longer active (e.g. because it has already been destroyed).',
+        'Advanced users should note that the underlying interpretation of this exit varies depending on three major '+
+        'factors: (1) the implementation of the underlying database being supported, (2) the implementation of this driver, '+
+        'and (3) any database-specific metadata within the provided connection manager (i.e. that was passed into the `meta` input '+
+        'of `createManager()`.  For example, a driver might choose to allow a few different types of connection managers to be '+
+        'created.  In some cases, the driver communicates with the db when the connection manager is created, but in others, it '+
+        'waits until `getConnection()` is called. If an invalid connection string was supplied to `createManager()`, then in the '+
+        'latter case, the manager would still be created successfully.  But when `getConnection()` was called it would fail, '+
+        'triggering this exit.',
       outputVariableName: 'report',
       outputDescription: 'The `error` property is a JavaScript Error instance with more information and a stack trace.  The `meta` property is reserved for custom driver-specific extensions.',
       example: {
         error: '===',
         meta: '==='
-      }
+      },
+      forImplementors:
     }
 
   }

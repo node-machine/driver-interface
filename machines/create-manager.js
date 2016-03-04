@@ -86,15 +86,21 @@ module.exports = {
 
     failed: {
       description: 'Could not create a connection manager for this database using the specified connection string.',
-      extendedDescription: 'Even if the database is unreachable, bad credentials are being used, etc, this exit will not '+
-      'necessarily be called-- that depends on the implementation of this driver. '+
-      'If this exit is called, it might mean any of the following:\n'+
-      ' + the credentials encoded in the connection string are incorrect\n'+
-      ' + there is no database server running at the provided host (i.e. even if it is just that the database process needs to be started)\n'+
-      ' + there is no software "database" with the specified name running on the server\n'+
-      ' + the provided connection string does not have necessary access rights for the specified software "database"\n'+
-      ' + this Node.js process could not connect to the database, perhaps because of firewall/proxy settings\n'+
-      ' + any other miscellaneous connection error',
+      extendedDescription:
+        'If this exit is called, it might mean any of the following:\n'+
+        ' + the credentials encoded in the connection string are incorrect\n'+
+        ' + there is no database server running at the provided host (i.e. even if it is just that the database process needs to be started)\n'+
+        ' + there is no software "database" with the specified name running on the server\n'+
+        ' + the provided connection string does not have necessary access rights for the specified software "database"\n'+
+        ' + this Node.js process could not connect to the database, perhaps because of firewall/proxy settings\n'+
+        ' + any other miscellaneous connection error\n'+
+        '\n'+
+        'Note that even if the database is unreachable, bad credentials are being used, etc, '+
+        'this exit will not necessarily be called-- that depends on the implementation of the driver '+
+        'and any special configuration passed to the `meta` input. e.g. if a pool is being used that spins up '+
+        'multiple connections immediately when the manager is created, then this exit will be called if any of '+
+        'those initial attempts fail.  On the other hand, if the manager is designed to produce adhoc connections, '+
+        'any errors related to bad credentials, connectivity, etc. will not be caught until `getConnection()` is called.',
       outputVariableName: 'report',
       outputDescription: 'The `error` property is a JavaScript Error instance with more information and a stack trace.  The `meta` property is reserved for custom driver-specific extensions.',
       example: {
