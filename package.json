@@ -22,6 +22,8 @@
     "machineDir": "machines/",
     "isAbstract": true,
     "machines": [
+      "create-manager",
+      "destroy-manager",
       "get-connection",
       "release-connection",
       "send-native-query",
