@@ -33,11 +33,10 @@ module.exports = {
 
     success: {
       description: 'The native query was executed successfully.',
-      extendedDescription: 'The `result` returned will be coerced to a JSON-serializable value if it isn\'t one already (see [rttc.dehydrate()](https://github.com/node-machine/rttc#dehydratevalue-allownullfalse-dontstringifyfunctionsfalse)). That means any Date instances therein will be converted to timezone-agnostic ISO timestamp strings (i.e. JSON timestamps).',
       outputVariableName: 'report',
       outputDescription: 'The `result` property is the result data the database sent back.  The `meta` property is reserved for custom driver-specific extensions.',
       example: {
-        result: '*',
+        result: '===',
         meta: '==='
       }
     },

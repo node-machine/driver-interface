@@ -130,6 +130,9 @@ In the "Queryable" interface layer, raw results returned from sending native que
 | select                | ((array))          |
 | update                | ((dictionary))     |
 | delete                | ((dictionary))     |
+| count                 | ((number))         |
+| sum                   | ((number))         |
+| avg                   | ((number))         |
 
 
 #### insert
@@ -199,6 +202,52 @@ The successful result data from a query that deleted a set of existing records.
 | Property              | Type             | Details
 |-----------------------|------------------|:-----------------------------------------------------------------------|
 | `numRecordsDeleted`   | ((number))       | The number of records that were deleted by this query.
+
+
+
+
+#### count
+
+The successful result data from a query that counted a set of records.
+
+
+```js
+499
+```
+
+The number of records counted by this query.
+
+
+
+
+
+#### sum
+
+The successful result data from a query that calculated the sum over a particular field in a set of records.
+
+
+```js
+-939248248.4
+```
+
+The total sum aggregated by this query.
+
+
+
+#### avg
+
+The successful result data from a query that calculated the average (mean) over a particular field in a set of records.
+
+
+```js
+32.299
+```
+
+The average (mean) calculated by this query.
+
+
+
+
 
 
 

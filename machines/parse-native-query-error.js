@@ -15,14 +15,6 @@ module.exports = {
 
   inputs: {
 
-    queryType: {
-      description: 'The type of query operation this error came from.',
-      extendedDescription: 'Either "select", "insert", "delete", or "update".  This determines how the provided raw error will be parsed/coerced.',
-      moreInfoUrl: 'https://github.com/particlebanana/waterline-query-builder/blob/master/docs/syntax.md',
-      required: true,
-      example: 'select',// (select|insert|delete|update)
-    },
-
     nativeQueryError: {
       description: 'The error sent back from the database as a result of a native query.',
       extendedDescription: 'This is referring to the raw error; i.e. the `error` property of the output report returned through the `queryFailed` exit of `sendNativeQuery()` in this driver.',
