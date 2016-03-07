@@ -17,8 +17,10 @@ module.exports = {
 
     queryType: {
       description: 'The type of query operation this raw result came from.',
-      extendedDescription: 'Either "select", "insert", "delete", "update", "count", "sum", or "avg".  This determines how the provided raw result will be parsed/coerced.',
-      moreInfoUrl: 'https://github.com/particlebanana/waterline-query-builder/blob/master/docs/syntax.md',
+      extendedDescription:
+        'Either "select", "insert", "delete", "update", "count", "sum", or "avg".  '+
+        'This determines how the provided raw result will be parsed/coerced.',
+      moreInfoUrl: 'https://github.com/node-machine/waterline-driver-interface#query-results',
       required: true,
       example: 'select',// (select|insert|delete|update|count|sum|avg)
     },
