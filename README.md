@@ -14,7 +14,7 @@ For the latest information and tips about the **adapter interface for the curren
 | MySQL      | http://github.com/mikermcneil/machinepack-mysql      | Driveable, Queryable, Transactional
 | Redis      | https://github.com/mikermcneil/machinepack-redis     | Driveable
 
-> Waterline drivers are a not-yet-released feature as of WL>=v0.12; however they _can actually be used directly_ from any Node.js application-- including an app using an earlier version of Waterline.
+> Waterline drivers are a not-yet-released feature as of WL <=v0.12; however they _can actually be used directly_ from any Node.js application-- including an app using an earlier version of Waterline.
 
 
 ## Purpose
@@ -81,29 +81,12 @@ The following compatibility layers are furcated based on the functionality they 
 | Interface Layer | Description
 |:----------------|:------------------------------------------------------------------------------------------------------------------|
 | Driveable       | Any database.  Doesn't necessarily need to support persistent connections (they just need to be uniquely identifiable).
-| Queryable       | Databases which support conventionally-defined tables, primary keys, and uniqueness constraints.
+| Queryable       | Databases which support the concept of queries, tables, and uniqueness constraints.
 | Transactional   | Databases with native support for transactions.
 
 
 
 ## Usage
-
->
-> **Warning**
->
-> This interface is a work in progress and will rapidly evolve over the next few days. 
-> The focus right now is on providing lower-level access to the underlying database,
-> and on empowering adapter authors to be able to tune their packages without sacrificing
-> the uniformity that is necessary for Waterline core to work its magic.
->
-> Note that machinepacks implementing this interface are not currently usable as drop in replacements for
-> existing adapters in Sails apps or other apps using vanilla Waterline.  The interface specced here is
-> not high-level enough to fulfill the full Waterline adapter interface today-- rather the goal is for it
-> to gradually extend underlying APIs from the inside out.  Tthe first generation of drivers implemented
-> using this spec will be used _within existing Waterline adapters_. They can also be required and used
-> _directly_ from [any Node.js script](http://node-machine.org/).
->
-> If you have questions, feel free to open an issue.
 
 
 #### Methods
