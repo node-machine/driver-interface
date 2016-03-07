@@ -37,9 +37,9 @@ module.exports = {
       }
     },
 
-    badManager: {
-      friendlyName: 'Bad manager',
-      description: 'The provided connection manager is no longer active; or possibly never was.',
+    failed: {
+      friendlyName: 'Failed',
+      description: 'The provided connection manager (and/or any of its active connections) could not be destroyed.',
       extendedDescription:
         'Usually, this means the manager has already been destroyed.  But depending on the driver '+
         'it could also mean that database cannot be accessed.  In production, this can mean that the database '+
