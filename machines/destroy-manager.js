@@ -4,10 +4,10 @@ module.exports = {
   friendlyName: 'Destroy manager',
 
 
-  description: 'Destroy the specified connection manager and destroying all of its active connections.',
+  description: 'Destroy the specified connection manager and all of its active connections.',
 
 
-  extendedDescription: 'This may involve destroying a single connection, destroying a pool and its connections, destroying multiple pools and their connections, or something even more exotic.  The implementation is left up to the driver.',
+  extendedDescription: 'This may involve destroying a pool and its connections, destroying multiple pools and their connections, doing nothing at all (if this manager just does ad-hoc connections), or something even more exotic.  The implementation is left up to the driver.',
 
 
   inputs: {
