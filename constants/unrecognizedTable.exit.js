@@ -1,5 +1,5 @@
 /**
- * @module constants/badConnection.exit.js
+ * @module constants/unrecognizedTable.exit.js
  * @constant
  */
 module.exports = {
