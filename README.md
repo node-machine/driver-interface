@@ -8,8 +8,6 @@ What makes drivers different from normal NPM packages is that they have a standa
 
 An interface layer is defined by a name (e.g. "Queryable"), a stability level (e.g. "Draft"), and a set of _abstract machines_ (machines with no implementation).  The abstract machines in this repo each belong to _exactly one_ of the several available layers, and correspond with a particular method that driver package implementors make available at runtime.  These methods are explicitly intended to be useful directly from userland code; but it is also not uncommon for them to be accessed via a higher level abstraction such as an ORM, another machinepack, a middleware module, or a web framework.
 
-> Note that, whether open-source or proprietary, these plugins (called drivers) are most commonly installed using [NPM](http://npmjs.org).
-
 
 ## Available Drivers
 
@@ -33,19 +31,16 @@ An interface layer is defined by a name (e.g. "Queryable"), a stability level (e
 
 The currently planned interface includes multiple echelons of functionality a driver author can choose to implement.  This ranges from the baseline of raw connection management all the way up to native support for database transactions.
 
-The following compatibility layers are furcated based on the functionality they expose in a generic sense-- i.e. what they make possible without knowing anything about the underlying implementation.
+The following layers are furcated based on compatibility-- i.e. what they make possible without knowing anything about the underlying implementation.
 
 First, a quick summary:
 
-| Interface Layer | Stability Level | Introduced | Depends on layer(s)...
+| Interface Layer | Stability Level | Introduced | Depends On...
 |:----------------|:----------------|:-----------|:-----------------------------------------|
 | Driveable       | _Draft_         | Jan 2016   | _n/a_
 | Cache           | _Experimental_  | Mar 2016   | Driveable
 | Queryable       | _Draft_         | Jan 2016   | Driveable
 | Transactional   | _Draft_         | Jan 2016   | Queryable
-
-
-
 
 
 
