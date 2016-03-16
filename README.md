@@ -1,24 +1,118 @@
 # Waterline Driver Interface
 
-Abstract machines describing the Waterline driver API.
+An extensible meta-interface for Node.js, designed to make it easier to build plugin systems.
 
-For the latest information and tips about the **adapter interface for the currently released version of Sails and Waterline** as of February 2016, see [https://github.com/balderdashy/sails-docs/issues/637](https://github.com/balderdashy/sails-docs/issues/637).
+Whether open-source or proprietary, these plugins (called drivers) are most commonly installed using [NPM](http://npmjs.org). Drivers are [machinepacks](http://node-machine.org) that implement one or more standardized **interface layers**.  A particular driver _implements_ an interface layer if it contains its own implementations of all of the machines expected by that layer.
+
+An interface layer is defined by a name (e.g. "Queryable"), a stability level (e.g. "Draft"), and a set of _abstract machines_ (machines with no implementation).  The abstract machines in this repo each belong to _exactly one_ of the several available layers, and correspond with a particular method that driver package implementors make available at runtime.  These methods are explicitly intended to be useful directly from userland code; but it is also not uncommon for them to be accessed via a higher level abstraction such as an ORM, another machinepack, a middleware module, or a web framework.
+
 
 
 ## Available Drivers
 
-| Datasource | Repo                                                 | Interface Layers Supported           |
+| Database   | Repo                                                 | Layers Supported           |
 |------------|------------------------------------------------------|--------------------------------------|
 | MongoDB    | http://github.com/particlebanana/machinepack-mongodb | Driveable, Queryable
 | PostgreSQL | http://github.com/mikermcneil/machinepack-postgresql | Driveable, Queryable, Transactional
 | MySQL      | http://github.com/mikermcneil/machinepack-mysql      | Driveable, Queryable, Transactional
 | Redis      | https://github.com/mikermcneil/machinepack-redis     | Driveable
 
-> Waterline drivers are a not-yet-released feature as of WL <=v0.12; however they _can actually be used directly_ from any Node.js application-- including an app using an earlier version of Waterline.
+> While the latest stable release of officially supported Waterline/Sails.js adapters do not yet rely on the new drivers, that will be changing soon.  In the mean time, drivers _can actually be used directly_ from any Node.js application-- including an app using an earlier version of Waterline.
+>
+> For the latest information and tips about the **adapter interface for the currently released version of Sails and Waterline** as of February 2016, see [https://github.com/balderdashy/sails-docs/issues/637](https://github.com/balderdashy/sails-docs/issues/637).
+>
+> For more information about the Node-Machine project, see [http://node-machine.org](http://node-machine.org).
+
+
+
+
+## Interface Layers
+
+The currently planned interface includes multiple echelons of functionality a driver author can choose to implement.  This ranges from the baseline of raw connection management all the way up to native support for database transactions.
+
+The following compatibility layers are furcated based on the functionality they expose in a generic sense-- i.e. what they make possible without knowing anything about the underlying implementation.
+
+
+
+#### Driveable
+> Introduced: Jan 2016
+> Stability: Draft
+
+Any database-- doesn't necessarily need to support persistent connections.
+
+A driver implements the _Driveable_ interface layer if it includes the following machines:
+
++ `.createManager()`
++ `.destroyManager()`
++ `.getConnection()`
++ `.releaseConnection()`
+
+#### Queryable
+> Introduced: Jan 2016
+> Stability: Draft
+
+A driver implements the _Queryable_ IL if it includes all machines nececssary for _Driveable_, in addition to the following:
++ `.sendNativeQuery()`
++ `.compileStatement()`
++ `.parseNativeQueryResult()`
++ `.parseNativeQueryError()`
+
+#### Transactional
+> Introduced: Jan 2016
+> Stability: Draft
+
+A driver implements the _Transactional_ IL if it includes all machines nececssary for _Queryable_, in addition to the following:
+
++ `.beginTransaction()`
++ `.commitTransaction()`
++ `.rollbackTransaction()`
+
+#### Cache
+> - Introduced: March 2016
+> - Stability: Experimental
+
+A driver implements the _Cache_ interface layer if it includes all machines nececssary for _Driveable_, in addition to the following:
+
++ `.cacheValue()`
++ `.getCachedValues()`
++ `.destroyCachedValues()`
+
+
+#### Summary
+
+A quick reference:
+
+| Interface Layer | Stability      | Description
+|:----------------|:---------------|:-------------------------------------------------------------------------------------------------|
+| Driveable       | _Draft_        | Any database-- doesn't necessarily need to support persistent connections.
+| Queryable       | _Draft_        | Databases which support the concept of queries, uniqueness constraints, and tables/collections.  Uses [WLQL](https://github.com/particlebanana/waterline-query-docs) syntax, which is based on [Knex](http://knexjs.org/).
+| Transactional   | _Draft_        | Databases with native support for transactions.
+| Cache           | _Experimental_ | Databases which can function natively as a cache, with native support for key expiry.
+
+
+
+
+
+
+## Usage
+
+#### Methods
+See the [abstract machines](./machines) defined in this repo.
+
+#### Expected Return Values
+See the `success` exit definitions of the machines in this repo and the section on [Query Results](#query-results) below for more information.
+
+#### Errors
+See the other exit definitions of machines in this repo and/or the section on [Footprints](#footprints) below for more information.
+
+#### Query Language
+The Queryable interface layer supports declarative syntax for most types of DQL/DML queries via `compileStatement()`, and the normalized result returned by `parseNativeQueryResult()`.  See https://github.com/particlebanana/waterline-query-docs for more information.
+
+
 
 
 ## Purpose
-So why add another API? Isn't the adapter system enough?
+So why add another API? Isn't the Waterline adapter system enough?
 
 #### The Adapter System
 The adapter system exists to provide the Waterline ORM/ODM with mappings it can use to expose a normalized interface which hides the complexity inherent in working with one or more underlying databases directly.  Adapters expose methods like `.find()` and `.create()` which are designed to be called by Waterline core.  This means that userland code in Waterline-powered applications focuses on business logic; working with logical models, attributes and records rather than physical tables/columns/rows or collections/fields/documents.
@@ -51,250 +145,11 @@ Drivers are free to implement extensions to this interface with customizations t
 
 Finally, drivers can add their own custom machines-- although this should be used with care, in case custom machines clash with future additions to the specification.  For similar reasons, drivers should not add new exits or inputs to official machines, and the semantic skeleton (`friendlyName`, `example`,`required`) of standardized inputs and exits should not be changed (although `description`, `extendedDescription`, `moreInfoUrl`, `outputDescription`, `whereToGet`, and `outputVariableName` are all fair game).
 
-
-
-#### Interface Layers
-
-The currently planned interface includes multiple echelons of functionality a driver author can choose to implement.  This ranges from the baseline of raw connection management all the way up to native support for database transactions.
-
-The following compatibility layers are furcated based on the functionality they expose in a generic sense-- i.e. what they make possible without knowing anything about the underlying implementation.
-
-
-#### Driveable
-+ `.createManager()`
-+ `.destroyManager()`
-+ `.getConnection()`
-+ `.releaseConnection()`
-
-#### Queryable
-+ `.sendNativeQuery()`
-+ `.compileStatement()`
-+ `.parseNativeQueryResult()`
-+ `.parseNativeQueryError()`
-
-#### Transactional
-+ `.beginTransaction()`
-+ `.commitTransaction()`
-+ `.rollbackTransaction()`
-
-
-| Interface Layer | Description
-|:----------------|:------------------------------------------------------------------------------------------------------------------|
-| Driveable       | Any database.  Doesn't necessarily need to support persistent connections (they just need to be uniquely identifiable).
-| Queryable       | Databases which support the concept of queries, tables, and uniqueness constraints.
-| Transactional   | Databases with native support for transactions.
-
-
-
-## Usage
-
-
-#### Methods
-See the machines in this repo.
-
-#### Expected Return Values
-See the `success` exit definition of the machines in this repo and the section on [Query Results](#query-results) below for more information.
-
-#### Errors
-See the other exit definitions of machines in this repo and/or the section on [Footprints](#footprints) below for more information.
-
-#### Query Language
-The Queryable interface layer supports declarative syntax for most types of DQL/DML queries via `compileStatement()`, and the normalized result returned by `parseNativeQueryResult()`.  See https://github.com/particlebanana/waterline-query-docs for more information.
-
-
-
-## Query Results
-In the "Queryable" interface layer, raw results returned from sending native queries can be parsed using `parseNativeQueryResult()`. The normalized result depends on the query type:
-
-
-| Source Query          | Result Type        |
-|:----------------------|--------------------|
-| insert                | ((dictionary))     |
-| select                | ((array))          |
-| update                | ((dictionary))     |
-| delete                | ((dictionary))     |
-| count                 | ((number))         |
-| sum                   | ((number))         |
-| avg                   | ((number))         |
-
-
-#### insert
-
-The successful result data from a query that inserted a new record.
-
-
-```js
-{
-  inserted: '*'
-}
-```
-
-
-| Property              | Type             | Details
-|-----------------------|------------------|:----------------------------------------------------------------------------------------------------------|
-| `inserted`            | ((json))         | The primary key value of the newly inserted record.  It is either a number or a string.
-
-
-
-#### select
-
-The successful result data from a query that fetched, joined, or aggregated a set of existing records.
-
-```js
-[
-  {}
-]
-```
-
-Each item in the result array is a dictionary (`{}`) that corresponds with an individual record or virtual record (e.g. "count") returned from the database.  Guaranteed to be JSON-compatible (Date instances will be cast to tz-agnostic ISO strings).
-
-
-
-
-#### update
-
-The successful result data from a query that updated a set of existing records.
-
-
-```js
-{
-  numRecordsUpdated: 7
-}
-```
-
-
-| Property              | Type             | Details
-|-----------------------|------------------|:-----------------------------------------------------------------------|
-| `numRecordsUpdated`   | ((number))       | The number of records that were updated by this query.
-
-
-
-#### delete
-
-The successful result data from a query that deleted a set of existing records.
-
-
-```js
-{
-  numRecordsDeleted: 13
-}
-```
-
-
-
-| Property              | Type             | Details
-|-----------------------|------------------|:-----------------------------------------------------------------------|
-| `numRecordsDeleted`   | ((number))       | The number of records that were deleted by this query.
-
-
-
-
-#### count
-
-The successful result data from a query that counted a set of records.
-
-
-```js
-499
-```
-
-The number of records counted by this query.
-
-
-
-
-
-#### sum
-
-The successful result data from a query that calculated the sum over a particular field in a set of records.
-
-
-```js
--939248248.4
-```
-
-The total sum aggregated by this query.
-
-
-
-#### avg
-
-The successful result data from a query that calculated the average (mean) over a particular field in a set of records.
-
-
-```js
-32.299
-```
-
-The average (mean) calculated by this query.
-
-
-
-
-
-
-
-
-
-## Footprints
-
-In the "Queryable" interface layer, raw errors returned from sending native queries can be parsed using `parseNativeQueryError()`.  The output is one of a set of standardized error footprints:
-
-| Footprint             | Potential Source Queries | Error Description
-|-----------------------|--------------------------|:-----------------------------------------------------------------------------------|
-| notUnique             | `update`, `insert`       | The query failed because it would violate one or more uniqueness constraints.
-| catchall              | _any_                    | The error from the query cannot be identified as any other known kind of query footprint.
-
-
-#### notUnique
-
-The query failed because it would violate one or more uniqueness constraints.
-
-> _Can occur with "insert" and "update" query types._
-
-```js
-{
-  identity: 'notUnique',
-  keys: [ 'email_address', 'PRIMARY' ]
-}
-```
-
-| Property              | Type             | Details
-|-----------------------|------------------|:----------------------------------------------------------------------------------------------------------|
-| identity              | ((string))       | Uniquely identifies the footprint.
-| keys                  | ((array))        | An array of the names of keys where uniqueness constraint violations occurred.  Oftentimes this is a list of column names, but depending on the database keys might have custom names or be specified by a special identifier like `'PRIMARY'` (e.g. MySQL).
-
-> **Important:**
-> The `keys` array is not guaranteed to contain _all_ of the constraints which were violated.
-> For example, even if `keys` is `['PRIMARY']`, there might be other keys with constraint
-> violations which would be violated by the query as well.
-
-
-#### catchall
-
-The error from the query cannot be identified as any other known kind of query footprint.
-
-> _Can occur with any type of query._
-
-```js
-{
-  identity: 'catchall'
-}
-```
-
-| Property              | Type             | Details
-|-----------------------|------------------|:----------------------------------------------------------------------------------------------------------|
-| identity              | ((string))       | Uniquely identifies the footprint.
-
-
-
 ## Official Support
 
-Our primary focus at the moment is to finish, test, and document feature-complete implementations of this interface for MySQL, MongoDB, and PostgreSQL.  Early versions of some drivers will be available for testing as early as the end of this month (February 2016).
+Our primary focus at the moment is to finish, test, and document feature-complete implementations of this interface for MySQL, MongoDB, and PostgreSQL.  Early versions of some drivers are available as of March 2016.
 
 > See https://github.com/particlebanana/waterline-query-docs/issues/2#issuecomment-186622547 for more discussion about the future of this specification and related APIs in Waterline and the Node-Machine project.
-
-
 
 
 ## License
