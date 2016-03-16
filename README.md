@@ -2,9 +2,13 @@
 
 An extensible meta-interface for Node.js, designed to make it easier to build plugin systems.
 
-Whether open-source or proprietary, these plugins (called drivers) are most commonly installed using [NPM](http://npmjs.org). Drivers are [machinepacks](http://node-machine.org) that implement one or more standardized **interface layers**.  A particular driver _implements_ an interface layer if it contains its own implementations of all of the machines expected by that layer.
+Drivers are just Node modules.  They are most commonly installed as [NPM](http://npmjs.org) packages, but you can bring them into your projects any way you like, and they can be open-source or proprietary.
+
+What makes drivers different from normal NPM packages is that they have a standard interface.  Specifically, drivers are [machinepacks](http://node-machine.org) that implement one or more supported **interface layers**.  A particular driver _implements_ an interface layer if it contains its own implementations of all of the methods (called "machines") expected by that layer.  For example, since the MySQL driver has all 4 of the methods required by the "Driveable" interface layer, we say that it implements that layer.
 
 An interface layer is defined by a name (e.g. "Queryable"), a stability level (e.g. "Draft"), and a set of _abstract machines_ (machines with no implementation).  The abstract machines in this repo each belong to _exactly one_ of the several available layers, and correspond with a particular method that driver package implementors make available at runtime.  These methods are explicitly intended to be useful directly from userland code; but it is also not uncommon for them to be accessed via a higher level abstraction such as an ORM, another machinepack, a middleware module, or a web framework.
+
+> Note that, whether open-source or proprietary, these plugins (called drivers) are most commonly installed using [NPM](http://npmjs.org).
 
 
 ## Available Drivers
