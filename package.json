@@ -32,7 +32,10 @@
       "rollback-transaction",
       "compile-statement",
       "parse-native-query-error",
-      "parse-native-query-result"
+      "parse-native-query-result",
+      "cache-value",
+      "get-cached-value",
+      "destroy-cached-values"
     ]
   }
 }
