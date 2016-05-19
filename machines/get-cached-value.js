@@ -41,7 +41,7 @@ module.exports = {
   exits: {
 
     success: {
-      description: 'Value was sucessfully fetched.',
+      description: 'Value was successfully fetched.',
       outputVariableName: 'report',
       outputDescription: 'The `value` property is the cached value that was just retrieved.  The `meta` property is reserved for custom driver-specific extensions.',
       example: {

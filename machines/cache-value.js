@@ -56,7 +56,7 @@ module.exports = {
   exits: {
 
     success: {
-      description: 'Value was sucessfully written.',
+      description: 'Value was successfully written.',
       outputVariableName: 'report',
       outputDescription: 'The `meta` property is reserved for custom driver-specific extensions.',
       example: {
