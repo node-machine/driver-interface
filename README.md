@@ -48,7 +48,7 @@ First, a quick summary:
 Any database-- doesn't necessarily need to support persistent connections.
 
 A driver implements the _Driveable_ interface layer if it includes the following machines:
-+ `.createManager()`
++ [`.createManager()`](./machines/create-manager.js)
 + `.destroyManager()`
 + `.getConnection()`
 + `.releaseConnection()`
@@ -79,8 +79,7 @@ A driver implements the _Cache_ interface layer if it includes all machines nece
 + `.cacheValue()`
 + `.getCachedValues()`
 + `.destroyCachedValues()`
-
-
++ `.flushCache()`
 
 
 ## Usage
