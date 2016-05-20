@@ -49,37 +49,37 @@ Any database-- doesn't necessarily need to support persistent connections.
 
 A driver implements the _Driveable_ interface layer if it includes the following machines:
 + [`.createManager()`](./machines/create-manager.js)
-+ `.destroyManager()`
-+ `.getConnection()`
-+ `.releaseConnection()`
++ [`.destroyManager()`](./machines/destroy-manager.js)
++ [`.getConnection()`](./machines/get-connection.js)
++ [`.releaseConnection()`](./machines/release-connection.js)
 
 #### Queryable
 Any database which supports the concept of queries, uniqueness constraints, and tables/collections.  Uses [WLQL](https://github.com/particlebanana/waterline-query-docs) syntax, which is based on [Knex](http://knexjs.org/).
 
 A driver implements the _Queryable_ IL if it includes all machines nececssary for _Driveable_, in addition to the following:
-+ `.sendNativeQuery()`
-+ `.compileStatement()`
-+ `.parseNativeQueryResult()`
-+ `.parseNativeQueryError()`
++ [`.sendNativeQuery()`](./machines/send-native-query.js)
++ [`.compileStatement()`](./machines/compile-statement.js)
++ [`.parseNativeQueryResult()`](./machines/parse-native-query-result.js)
++ [`.parseNativeQueryError()`](./machines/parse-native-query-error.js)
 
 #### Transactional
 Any database with native support for transactions.
 
 A driver implements the _Transactional_ IL if it includes all machines nececssary for _Queryable_, in addition to the following:
 
-+ `.beginTransaction()`
-+ `.commitTransaction()`
-+ `.rollbackTransaction()`
++ [`.beginTransaction()`](./machines/begin-transaction.js)
++ [`.commitTransaction()`](./machines/commit-transaction.js)
++ [`.rollbackTransaction()`](./machines/rollback-transaction.js)
 
 #### Cache
 Any database which can function as a cache, with native support for key expiry.
 
 A driver implements the _Cache_ interface layer if it includes all machines nececssary for _Driveable_, in addition to the following:
 
-+ `.cacheValue()`
-+ `.getCachedValues()`
-+ `.destroyCachedValues()`
-+ `.flushCache()`
++ [`.cacheValue()`](./machines/cache-value.js)
++ [`.getCachedValues()`](./machines/get-cached-values.js)
++ [`.destroyCachedValues()`](./machines/destroy-cached-values.js)
++ [`.flushCache()`](./machines/flush-cache.js)
 
 
 ## Usage
