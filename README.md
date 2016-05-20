@@ -77,7 +77,7 @@ Any database which can function as a cache, with native support for key expiry.
 A driver implements the _Cache_ interface layer if it includes all machines nececssary for _Driveable_, in addition to the following:
 
 + [`.cacheValue()`](./machines/cache-value.js)
-+ [`.getCachedValues()`](./machines/get-cached-values.js)
++ [`.getCachedValue()`](./machines/get-cached-value.js)
 + [`.destroyCachedValues()`](./machines/destroy-cached-values.js)
 + [`.flushCache()`](./machines/flush-cache.js)
 
