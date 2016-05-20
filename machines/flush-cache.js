@@ -42,16 +42,6 @@ module.exports = {
       }
     },
 
-    failed: {
-      description: 'The cache encountered an error while attempting to flush the cache.',
-      outputVariableName: 'report',
-      outputDescription: 'The `error` property is a JavaScript Error instance explaining the exact error.  The `meta` property is reserved for custom driver-specific extensions.',
-      example: {
-        error: '===',
-        meta: '==='
-      }
-    },
-
     badConnection: require('../constants/badConnection.exit')
 
   }
