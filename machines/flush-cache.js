@@ -4,7 +4,7 @@ module.exports = {
   friendlyName: 'Flush cache',
 
 
-  description: 'Flushes the cache, removing all data from it.',
+  description: 'Flush the cache, removing all data from it.',
 
 
   cacheable: true,
