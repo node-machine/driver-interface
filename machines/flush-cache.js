@@ -1,10 +1,10 @@
 module.exports = {
 
 
-  friendlyName: 'Get cached value',
+  friendlyName: 'Flush cache',
 
 
-  description: 'Look up the cached value associated with the specified key.',
+  description: 'Flush the cache, removing all data from it.',
 
 
   cacheable: true,
@@ -20,14 +20,6 @@ module.exports = {
       required: true
     },
 
-    key: {
-      friendlyName: 'Key',
-      description: 'The unique key to look up.',
-      extendedDescription: 'The case-sensitivity and allowable characters in keys may vary between drivers.',
-      required: true,
-      example: 'myNamespace.foo.bar_baz'
-    },
-
     meta: {
       friendlyName: 'Meta (custom)',
       description: 'Additional metadata to pass to the driver.',
@@ -41,20 +33,18 @@ module.exports = {
   exits: {
 
     success: {
-      description: 'Value was successfully fetched.',
+      description: 'Cache was successfully flushed.',
       outputVariableName: 'report',
-      outputDescription: 'The `value` property is the cached value that was just retrieved.  The `meta` property is reserved for custom driver-specific extensions.',
-      example: {
-        value: '*',
-        meta: '==='
-      }
+      outputDescription: 'The return value is true when the cache was successfully flushed.',
+      example: true
     },
 
-    notFound: {
-      description: 'No value exists under the specified key.',
+    failed: {
+      description: 'The cache encountered an error while attempting to flush the cache.',
       outputVariableName: 'report',
-      outputDescription: 'The `meta` property is reserved for custom driver-specific extensions.',
+      outputDescription: 'The `error` property is a JavaScript Error instance explaining the exact error.  The `meta` property is reserved for custom driver-specific extensions.',
       example: {
+        error: '===',
         meta: '==='
       }
     },
