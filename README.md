@@ -38,7 +38,7 @@ First, a quick summary:
 | Interface Layer | Stability Level | Introduced | Depends On...
 |:----------------|:----------------|:-----------|:-----------------------------------------|
 | Driveable       | _Draft_         | Jan 2016   | _n/a_
-| Cache           | _Experimental_  | Mar 2016   | Driveable
+| Cache           | _Draft_         | Mar 2016   | Driveable
 | Queryable       | _Draft_         | Jan 2016   | Driveable
 | Transactional   | _Draft_         | Jan 2016   | Queryable
 
