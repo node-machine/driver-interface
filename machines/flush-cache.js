@@ -35,9 +35,16 @@ module.exports = {
     success: {
       description: 'Cache was successfully flushed.',
       outputVariableName: 'report',
-      outputDescription: 'The `value` property is true when the cache was successfully flushed.  The `meta` property is reserved for custom driver-specific extensions.',
+      outputDescription: 'The return value is true when the cache was successfully flushed.',
+      example: true
+    },
+
+    failed: {
+      description: 'The cache encountered an error while attempting to flush the cache.',
+      outputVariableName: 'report',
+      outputDescription: 'The `error` property is a JavaScript Error instance explaining the exact error.  The `meta` property is reserved for custom driver-specific extensions.',
       example: {
-        value: true,
+        error: '===',
         meta: '==='
       }
     },
