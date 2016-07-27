@@ -21,6 +21,54 @@
     "friendlyName": "Waterline driver interface",
     "description": "A standardized interface for common database functionality.",
     "isAbstract": true,
+    "defines": {
+      "connectable": {
+        "version": "1.0",
+        "dependencies": {},
+        "machines": [
+          "create-manager",
+          "destroy-manager",
+          "get-connection",
+          "release-connection"
+        ]
+      },
+      "cache": {
+        "version": "1.0-rc1",
+        "dependencies": {
+          "connectable": "^1.0"
+        },
+        "machines": [
+          "cache-value",
+          "get-cached-value",
+          "destroy-cached-values",
+          "flush-cache"
+        ]
+      },
+      "queryable": {
+        "version": "1.0",
+        "dependencies": {
+          "connectable": "^1.0"
+        },
+        "machines": [
+          "send-native-query",
+          "compile-statement",
+          "parse-native-query-error",
+          "parse-native-query-result"
+        ]
+      },
+      "transactional": {
+        "version": "1.0",
+        "dependencies": {
+          "connectable": "^1.0",
+          "queryable": "^1.0"
+        },
+        "machines": [
+          "begin-transaction",
+          "commit-transaction",
+          "rollback-transaction"
+        ]
+      }
+    },
     "machineDir": "machines/",
     "machines": [
       "create-manager",
