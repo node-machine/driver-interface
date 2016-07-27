@@ -4,7 +4,7 @@ An extensible meta-interface for Node.js, designed to make it easier to build pl
 
 Drivers are just Node modules.  They are most commonly installed as [NPM](http://npmjs.org) packages, but you can bring them into your projects any way you like, and they can be open-source or proprietary.
 
-What makes drivers different from normal NPM packages is that they have a standard interface.  Specifically, drivers are [machinepacks](http://node-machine.org) that implement one or more supported **interface layers**.  A particular driver _implements_ an interface layer if it contains its own implementations of all of the methods (called "machines") expected by that layer.  For example, since the MySQL driver has all 4 of the methods required by the "Driveable" interface layer, we say that it implements that layer.
+What makes drivers different from normal NPM packages is that they have a standard interface.  Specifically, drivers are [machinepacks](http://node-machine.org) that implement one or more supported **interface layers**.  A particular driver _implements_ an interface layer if it contains its own implementations of all of the methods (called "machines") expected by that layer.  For example, since the MySQL driver has all 4 of the methods required by the "Connectable" interface layer, we say that it implements that layer.
 
 An interface layer is defined by a name (e.g. "Queryable"), a stability level (e.g. "Draft"), and a set of _abstract machines_ (machines with no implementation).  The abstract machines in this repo each belong to _exactly one_ of the several available layers, and correspond with a particular method that driver package implementors make available at runtime.  These methods are explicitly intended to be useful directly from userland code; but it is also not uncommon for them to be accessed via a higher level abstraction such as an ORM, another machinepack, a middleware module, or a web framework.
 
@@ -13,10 +13,10 @@ An interface layer is defined by a name (e.g. "Queryable"), a stability level (e
 
 | Database   | Repo                                                 | Layers Supported           |
 |------------|------------------------------------------------------|--------------------------------------|
-| MongoDB    | http://github.com/particlebanana/machinepack-mongodb | Driveable, Queryable
-| PostgreSQL | http://github.com/mikermcneil/machinepack-postgresql | Driveable, Queryable, Transactional
-| MySQL      | http://github.com/mikermcneil/machinepack-mysql      | Driveable, Queryable, Transactional
-| Redis      | https://github.com/mikermcneil/machinepack-redis     | Driveable, Cache
+| MongoDB    | http://github.com/particlebanana/machinepack-mongodb | Connectable, Queryable
+| PostgreSQL | http://github.com/mikermcneil/machinepack-postgresql | Connectable, Queryable, Transactional
+| MySQL      | http://github.com/mikermcneil/machinepack-mysql      | Connectable, Queryable, Transactional
+| Redis      | https://github.com/mikermcneil/machinepack-redis     | Connectable, Cache
 
 > While the latest stable release of officially supported Waterline/Sails.js adapters do not yet rely on the new drivers, that will be changing soon.  In the mean time, drivers _can actually be used directly_ from any Node.js application-- including an app using an earlier version of Waterline.
 >
@@ -37,17 +37,17 @@ First, a quick summary:
 
 | Interface Layer | Stability Level | Introduced | Depends On...
 |:----------------|:----------------|:-----------|:-----------------------------------------|
-| Driveable       | _Draft_         | Jan 2016   | _n/a_
-| Cache           | _Draft_         | Mar 2016   | Driveable
-| Queryable       | _Draft_         | Jan 2016   | Driveable
+| Connectable     | _Draft_         | Jan 2016   | _n/a_
+| Cache           | _Draft_         | Mar 2016   | Connectable
+| Queryable       | _Draft_         | Jan 2016   | Connectable
 | Transactional   | _Draft_         | Jan 2016   | Queryable
 
 
 
-#### Driveable
+#### Connectable
 Any database-- doesn't necessarily need to support persistent connections.
 
-A driver implements the _Driveable_ interface layer if it includes the following machines:
+A driver implements the _Connectable_ interface layer if it includes the following machines:
 + [`.createManager()`](./machines/create-manager.js)
 + [`.destroyManager()`](./machines/destroy-manager.js)
 + [`.getConnection()`](./machines/get-connection.js)
@@ -56,7 +56,7 @@ A driver implements the _Driveable_ interface layer if it includes the following
 #### Queryable
 Any database which supports the concept of queries, uniqueness constraints, and tables/collections.  Uses [WLQL](https://github.com/particlebanana/waterline-query-docs) syntax, which is based on [Knex](http://knexjs.org/).
 
-A driver implements the _Queryable_ IL if it includes all machines nececssary for _Driveable_, in addition to the following:
+A driver implements the _Queryable_ IL if it includes all machines nececssary for _Connectable_, in addition to the following:
 + [`.sendNativeQuery()`](./machines/send-native-query.js)
 + [`.compileStatement()`](./machines/compile-statement.js)
 + [`.parseNativeQueryResult()`](./machines/parse-native-query-result.js)
@@ -74,7 +74,7 @@ A driver implements the _Transactional_ IL if it includes all machines nececssar
 #### Cache
 Any database which can function as a cache, with native support for key expiry.
 
-A driver implements the _Cache_ interface layer if it includes all machines nececssary for _Driveable_, in addition to the following:
+A driver implements the _Cache_ interface layer if it includes all machines nececssary for _Connectable_, in addition to the following:
 
 + [`.cacheValue()`](./machines/cache-value.js)
 + [`.getCachedValue()`](./machines/get-cached-value.js)
