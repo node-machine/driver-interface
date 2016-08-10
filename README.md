@@ -88,7 +88,7 @@ A driver implements the _Cache_ interface layer if it includes all machines nece
 See the [abstract machines](./machines) defined in this repo.
 
 #### Query Language
-The Queryable interface layer supports declarative syntax for most types of DQL/DML queries via `compileStatement()`, and the normalized result returned by `parseNativeQueryResult()`.  See the WLQL docs](https://github.com/particlebanana/waterline-query-docs/blob/master/docs/) for more information.
+The Queryable interface layer supports declarative syntax for most types of DQL/DML queries via `compileStatement()`, and the normalized result returned by `parseNativeQueryResult()`.  See the [WLQL docs](https://github.com/particlebanana/waterline-query-docs/blob/master/docs/) for more information.
 
 #### Expected Return Values
 See the `success` exit definitions of the machines in this repo and the section on [**Query Results** in the WLQL docs](https://github.com/particlebanana/waterline-query-docs/blob/master/docs/results.md) for more information.
