@@ -13,10 +13,10 @@ An interface layer is defined by a name (e.g. "Queryable"), a stability level (e
 
 | Database   | Repo                                                 | Layers Supported           |
 |------------|------------------------------------------------------|--------------------------------------|
-| MongoDB    | http://github.com/particlebanana/machinepack-mongodb | Connectable, Queryable
-| PostgreSQL | http://github.com/mikermcneil/machinepack-postgresql | Connectable, Queryable, Transactional
-| MySQL      | http://github.com/mikermcneil/machinepack-mysql      | Connectable, Queryable, Transactional
-| Redis      | https://github.com/mikermcneil/machinepack-redis     | Connectable, Cache
+| MongoDB    | https://github.com/treelinehq/machinepack-mongodb    | Connectable, Queryable
+| PostgreSQL | https://github.com/treelinehq/machinepack-postgresql | Connectable, Queryable, Transactional
+| MySQL      | https://github.com/treelinehq/machinepack-mysql      | Connectable, Queryable, Transactional
+| Redis      | https://github.com/treelinehq/machinepack-redis      | Connectable, Cache
 
 > While the latest stable release of officially supported Waterline/Sails.js adapters do not yet rely on the new drivers, that will be changing soon.  In the mean time, drivers _can actually be used directly_ from any Node.js application-- including an app using an earlier version of Waterline.
 >
