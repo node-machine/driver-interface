@@ -15,7 +15,7 @@
   "author": "The Treeline Company",
   "license": "MIT",
   "dependencies": {
-    "machine": "^12.3.0"
+    "machine": "^13.0.0-0"
   },
   "machinepack": {
     "friendlyName": "Waterline driver interface",
@@ -23,8 +23,6 @@
     "isAbstract": true,
     "defines": {
       "connectable": {
-        "version": "1.0",
-        "dependencies": {},
         "machines": [
           "create-manager",
           "destroy-manager",
@@ -33,10 +31,6 @@
         ]
       },
       "cache": {
-        "version": "1.0-rc1",
-        "dependencies": {
-          "connectable": "^1.0"
-        },
         "machines": [
           "cache-value",
           "get-cached-value",
@@ -45,10 +39,6 @@
         ]
       },
       "queryable": {
-        "version": "1.0",
-        "dependencies": {
-          "connectable": "^1.0"
-        },
         "machines": [
           "send-native-query",
           "compile-statement",
@@ -57,11 +47,6 @@
         ]
       },
       "transactional": {
-        "version": "1.0",
-        "dependencies": {
-          "connectable": "^1.0",
-          "queryable": "^1.0"
-        },
         "machines": [
           "begin-transaction",
           "commit-transaction",
