@@ -54,7 +54,7 @@ A driver implements the _Connectable_ interface layer if it includes the followi
 + [`.releaseConnection()`](./machines/release-connection.js)
 
 #### Queryable
-Any database which supports the concept of queries, uniqueness constraints, and tables/collections.  Uses [WLQL](https://github.com/particlebanana/waterline-query-docs) syntax, which is based on [Knex](http://knexjs.org/).
+Any database which supports the concept of queries, uniqueness constraints, and tables/collections.  Uses [WLQL](https://github.com/treelinehq/waterline-query-docs) syntax, which is based on [Knex](http://knexjs.org/).
 
 A driver implements the _Queryable_ IL if it includes all machines nececssary for _Connectable_, in addition to the following:
 + [`.sendNativeQuery()`](./machines/send-native-query.js)
@@ -74,7 +74,7 @@ A driver implements the _Transactional_ IL if it includes all machines nececssar
 #### Cache
 Any database which can function as a cache, with native support for key expiry.
 
-A driver implements the _Cache_ interface layer if it includes all machines nececssary for _Connectable_, in addition to the following:
+A driver implements the _Cache_ interface layer if it includes all machines necessary for _Connectable_, in addition to the following:
 
 + [`.cacheValue()`](./machines/cache-value.js)
 + [`.getCachedValue()`](./machines/get-cached-value.js)
@@ -88,13 +88,13 @@ A driver implements the _Cache_ interface layer if it includes all machines nece
 See the [abstract machines](./machines) defined in this repo.
 
 #### Query Language
-The Queryable interface layer supports declarative syntax for most types of DQL/DML queries via `compileStatement()`, and the normalized result returned by `parseNativeQueryResult()`.  See the [WLQL docs](https://github.com/particlebanana/waterline-query-docs/blob/master/docs/) for more information.
+The Queryable interface layer supports declarative syntax for most types of DQL/DML queries via `compileStatement()`, and the normalized result returned by `parseNativeQueryResult()`.  See the [WLQL docs](https://github.com/treelinehq/waterline-query-docs/blob/master/docs/) for more information.
 
 #### Expected Return Values
-See the `success` exit definitions of the machines in this repo and the section on [**Query Results** in the WLQL docs](https://github.com/particlebanana/waterline-query-docs/blob/master/docs/results.md) for more information.
+See the `success` exit definitions of the machines in this repo and the section on [**Query Results** in the WLQL docs](https://github.com/treelinehq/waterline-query-docs/blob/master/docs/results.md) for more information.
 
 #### Errors
-See the other exit definitions of machines in this repo and/or the section on [**Errors** in the WLQL docs](https://github.com/particlebanana/waterline-query-docs/blob/master/docs/errors.md) for more information.
+See the other exit definitions of machines in this repo and/or the section on [**Errors** in the WLQL docs](https://github.com/treelinehq/waterline-query-docs/blob/master/docs/errors.md) for more information.
 
 
 ## Philosophy
@@ -140,7 +140,7 @@ The Waterline driver interface is designed to solve this problem bottom-up, once
 
 Our primary focus at the moment is to finish, test, and document feature-complete implementations of the supported interface layers for MySQL, MongoDB, and PostgreSQL.  Early versions of some drivers are available as of March 2016.
 
-> See https://github.com/particlebanana/waterline-query-docs/issues/2#issuecomment-186622547 for more discussion about the future of this specification and related APIs in Waterline and the Node-Machine project.
+> See https://github.com/treelinehq/waterline-query-docs/issues/2#issuecomment-186622547 for more discussion about the future of this specification and related APIs in Waterline and the Node-Machine project.
 
 
 
