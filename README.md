@@ -11,7 +11,7 @@ An interface layer is defined by a name (e.g. "Queryable"), a stability level (e
 
 ## Available Drivers
 
-| Database   | Repo                                                 | Layers Supported           |
+| Database   | Repo                                                 | Layers Supported                     |
 |------------|------------------------------------------------------|--------------------------------------|
 | MongoDB    | https://github.com/treelinehq/machinepack-mongodb    | Connectable, Queryable
 | PostgreSQL | https://github.com/treelinehq/machinepack-postgresql | Connectable, Queryable, Transactional
@@ -138,10 +138,14 @@ The Waterline driver interface is designed to solve this problem bottom-up, once
 
 ## When will there be official support in Sails and/or Waterline?
 
-Our primary focus at the moment is to finish, test, and document feature-complete implementations of the supported interface layers for MySQL, MongoDB, and PostgreSQL.  Early versions of some drivers are available as of March 2016.
+~~Our primary focus at the moment is to finish, test, and document feature-complete implementations of the supported interface layers for MySQL, MongoDB, and PostgreSQL.  Early versions of some drivers are available as of March 2016.~~
 
+> ##### Update:
+>As of early Dec 2016, drivers for MySQL, MongoDB, and PostgreSQL are ready to start beating on.  They've been out for early testing for almost a year now, and the next version of Waterline (v0.13) / Sails (v1.0) will use them from the respective core adapters.  Meanwhile, the Redis driver, which implements the "Cache" IL (instead of "Queryable") is tentatively ready for production use.
+>
 > See https://github.com/treelinehq/waterline-query-docs/issues/2#issuecomment-186622547 for more discussion about the future of this specification and related APIs in Waterline and the Node-Machine project.
-
+>
+> Contributors will be putting the drivers through a lot more testing over the next 2 weeks, at which point they'll go into the Sails v1 prerelease, then into Sails v1 itself.
 
 
 
