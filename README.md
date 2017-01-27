@@ -54,7 +54,7 @@ A driver implements the _Connectable_ interface layer if it includes the followi
 + [`.releaseConnection()`](./machines/release-connection.js)
 
 #### Queryable
-Any database which supports the concept of queries, uniqueness constraints, and tables/collections.  Uses [WLQL](https://github.com/treelinehq/waterline-query-docs) syntax, which is based on [Knex](http://knexjs.org/).
+Any database which supports the concept of queries, uniqueness constraints, and tables/collections.  Uses [WLQL (stage 4 query)](https://github.com/treelinehq/waterline-query-docs) syntax, which is based on [Knex](http://knexjs.org/).
 
 A driver implements the _Queryable_ IL if it includes all machines nececssary for _Connectable_, in addition to the following:
 + [`.sendNativeQuery()`](./machines/send-native-query.js)
@@ -88,13 +88,13 @@ A driver implements the _Cache_ interface layer if it includes all machines nece
 See the [abstract machines](./machines) defined in this repo.
 
 #### Query Language
-The Queryable interface layer supports declarative syntax for most types of DQL/DML queries via `compileStatement()`, and the normalized result returned by `parseNativeQueryResult()`.  See the [WLQL docs](https://github.com/treelinehq/waterline-query-docs/blob/master/docs/) for more information.
+The Queryable interface layer supports declarative syntax for most types of DQL/DML queries via `compileStatement()`, and the normalized result returned by `parseNativeQueryResult()`.  See the [WLQL (stage 4 query) docs](https://github.com/treelinehq/waterline-query-docs/blob/master/docs/) for more information.
 
 #### Expected Return Values
-See the `success` exit definitions of the machines in this repo and the section on [**Query Results** in the WLQL docs](https://github.com/treelinehq/waterline-query-docs/blob/master/docs/results.md) for more information.
+See the `success` exit definitions of the machines in this repo and the section on [**Query Results** in the WLQL (stage 4 query) docs](https://github.com/treelinehq/waterline-query-docs/blob/master/docs/results.md) for more information.
 
 #### Errors
-See the other exit definitions of machines in this repo and/or the section on [**Errors** in the WLQL docs](https://github.com/treelinehq/waterline-query-docs/blob/master/docs/errors.md) for more information.
+See the other exit definitions of machines in this repo and/or the section on [**Errors** in the WLQL (stage 4 query) docs](https://github.com/treelinehq/waterline-query-docs/blob/master/docs/errors.md) for more information.
 
 
 ## Philosophy
