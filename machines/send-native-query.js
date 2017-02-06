@@ -25,7 +25,7 @@ module.exports = {
 
     valuesToEscape: {
       description: 'An optional list of strings, numbers, or special literals (true, false, or null) to escape and include in the native query, in order.',
-      extendedDescription: 'Note that numbers, `true`, `false`, and `null` are all interpreted exactly the same way as if they were wrapped in quotes.  This array must never contain any arrays or dictionaries.  The first value in the list will be used to replace `$1`, the second value to replace `$2`, and so on.',
+      extendedDescription: 'The first value in the list will be used to replace `$1`, the second value to replace `$2`, and so on.  Note that numbers, `true`, `false`, and `null` are interpreted _differently_ than if they were strings wrapped in quotes.  This array must never contain any arrays or dictionaries.',
       example: [ '*' ],
       defaultsTo: []
     },
