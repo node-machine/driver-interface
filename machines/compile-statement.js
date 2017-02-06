@@ -35,9 +35,10 @@ module.exports = {
       description: 'The provided Waterline statement was compiled successfully.',
       extendedDescription: 'The compiled `nativeQuery` will be coerced to a JSON-serializable value if it isn\'t one already (see [rttc.dehydrate()](https://github.com/node-machine/rttc#dehydratevalue-allownullfalse-dontstringifyfunctionsfalse)). That means any Date instances therein will be converted to timezone-agnostic ISO timestamp strings (i.e. JSON timestamps).',
       outputVariableName: 'report',
-      outputDescription: 'The `nativeQuery` property is the compiled native query for the database.  The `meta` property is reserved for custom driver-specific extensions.',
+      outputDescription: 'The `nativeQuery` property is the compiled native query for the database.  The `valuesToEscape` property is the values which accompany the native query.  The `meta` property is reserved for custom driver-specific extensions.',
       example: {
         nativeQuery: '*',
+        valuesToEscape: ['*'],
         meta: '==='
       }
     },
