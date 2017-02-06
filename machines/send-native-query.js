@@ -14,7 +14,7 @@ module.exports = {
 
     nativeQuery: {
       description: 'A native query for the database.',
-      extendedDescription: 'If `valuesToEscape` is provided, this supports template syntax like `$1`, `$2`, etc.  Use a backslash before `$` to include these sorts of strings literally (e.g. `\\$1`).',
+      extendedDescription: 'If `valuesToEscape` is provided, this supports template syntax like `$1`, `$2`, etc.',
       whereToGet: {
         description: 'Write a native query for this database, or if this driver supports it, use `compileStatement()` to build a native query from Waterline syntax.',
         extendedDescription: 'This might be compiled from a Waterline statement (stage 4 query) using "Compile statement", however it could also originate directly from userland code.'
