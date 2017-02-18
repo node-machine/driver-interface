@@ -35,7 +35,7 @@ module.exports = {
     },
 
     onUnexpectedFailure: {
-      description: 'A function to call any time an unexpected error event is received from this manager or any of its connections.',
+      description: 'A function to call any time an otherwise-unhandled error event is received from this manager or any of its connections.',
       extendedDescription:
         'This can be used for anything you like, whether that\'s sending an email to devops, '+
         'or something as simple as logging a warning to the console.\n'+
