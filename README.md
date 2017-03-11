@@ -39,7 +39,7 @@ First, a quick summary:
 |:----------------|:----------------|:-----------|:-----------------------------------------|
 | Connectable     | _Stable_        | Jan 2016   | _n/a_
 | Modeled         | _Draft_         | Nov 2016   | Connectable
-| Migratable      | _Draft_         | Mar 2017   | Connectable
+| Migratable      | _Experimental_  | Mar 2017   | Connectable
 | Cache           | _Draft_         | Mar 2016   | Connectable
 | Queryable       | _Unstable_      | Jan 2016   | Connectable
 | Transactional   | _Stable_        | Jan 2016   | Queryable
@@ -69,12 +69,12 @@ A driver implements the _Modeled_ interface layer if it includes the following m
 + [`.avgRecords()`](./machines/avg-records.js)
 
 #### Migratable
-Any database or system that supports a concept of unique indexes.
+Any database or system that supports a concept of tabular data with unique indexes.
 
 A driver implements the _Migratable_ interface layer if it includes the following machines:
-+ [`.define()`](./machines/define.js)
-+ [`.drop()`](./machines/drop.js)
-+ [`.setSequence()`](./machines/set-sequence.js)
++ [`.definePhysicalModel()`](./machines/define-physical-model.js)
++ [`.dropPhysicalModel()`](./machines/drop-physical-model.js)
++ [`.setPhysicalSequence()`](./machines/set-physical-sequence.js)
 
 #### Cache
 Any database or system which can function as a cache, with native support for key expiry.
