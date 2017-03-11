@@ -37,15 +37,16 @@ First, a quick summary:
 
 | Interface Layer | Stability Level | Introduced | Depends On...
 |:----------------|:----------------|:-----------|:-----------------------------------------|
-| Connectable     | _Draft_         | Jan 2016   | _n/a_
+| Connectable     | _Stable_        | Jan 2016   | _n/a_
+| Modeled         | _Draft_         | Nov 2016   | Connectable
+| Migratable      | _Draft_         | Mar 2017   | Connectable
 | Cache           | _Draft_         | Mar 2016   | Connectable
-| Queryable       | _Draft_         | Jan 2016   | Connectable
-| Transactional   | _Draft_         | Jan 2016   | Queryable
-
+| Queryable       | _Unstable_      | Jan 2016   | Connectable
+| Transactional   | _Stable_        | Jan 2016   | Queryable
 
 
 #### Connectable
-Any database-- doesn't necessarily need to support persistent connections.
+Any database or system-- doesn't necessarily need to support persistent connections.
 
 A driver implements the _Connectable_ interface layer if it includes the following machines:
 + [`.createManager()`](./machines/create-manager.js)
@@ -53,8 +54,40 @@ A driver implements the _Connectable_ interface layer if it includes the followi
 + [`.getConnection()`](./machines/get-connection.js)
 + [`.releaseConnection()`](./machines/release-connection.js)
 
+#### Modeled
+Any database that fully supports CRUD operations against predefined data models; including basic batch record manipulation, filtering, pagination, and a few of the most common aggregation operations.
+
+A driver implements the _Modeled_ interface layer if it includes the following machines:
++ [`.verifyModelDef()`](./machines/verify-model-def.js)
++ [`.createRecord()`](./machines/create-record.js)
++ [`.createEachRecord()`](./machines/create-each-record.js)
++ [`.updateRecords()`](./machines/update-records.js)
++ [`.destroyRecords()`](./machines/destroy-records.js)
++ [`.findRecords()`](./machines/find-records.js)
++ [`.countRecords()`](./machines/count-records.js)
++ [`.sumRecords()`](./machines/sum-records.js)
++ [`.avgRecords()`](./machines/avg-records.js)
+
+#### Migratable
+Any database or system that supports a concept of unique indexes.
+
+A driver implements the _Migratable_ interface layer if it includes the following machines:
++ [`.define()`](./machines/define.js)
++ [`.drop()`](./machines/drop.js)
++ [`.setSequence()`](./machines/set-sequence.js)
+
+#### Cache
+Any database or system which can function as a cache, with native support for key expiry.
+
+A driver implements the _Cache_ interface layer if it includes all machines necessary for _Connectable_, in addition to the following:
+
++ [`.cacheValue()`](./machines/cache-value.js)
++ [`.getCachedValue()`](./machines/get-cached-value.js)
++ [`.destroyCachedValues()`](./machines/destroy-cached-values.js)
++ [`.flushCache()`](./machines/flush-cache.js)
+
 #### Queryable
-Any database which supports the concept of queries, uniqueness constraints, and tables/collections.  Uses [WLQL (stage 4 query)](https://github.com/treelinehq/waterline-query-docs) syntax, which is based on [Knex](http://knexjs.org/).
+Any database or system which supports the concept of queries, uniqueness constraints, and tables/collections.  Uses [WLQL (stage 4 query)](https://github.com/treelinehq/waterline-query-docs) syntax, which is based on [Knex](http://knexjs.org/).
 
 A driver implements the _Queryable_ IL if it includes all machines nececssary for _Connectable_, in addition to the following:
 + [`.sendNativeQuery()`](./machines/send-native-query.js)
@@ -71,15 +104,6 @@ A driver implements the _Transactional_ IL if it includes all machines nececssar
 + [`.commitTransaction()`](./machines/commit-transaction.js)
 + [`.rollbackTransaction()`](./machines/rollback-transaction.js)
 
-#### Cache
-Any database which can function as a cache, with native support for key expiry.
-
-A driver implements the _Cache_ interface layer if it includes all machines necessary for _Connectable_, in addition to the following:
-
-+ [`.cacheValue()`](./machines/cache-value.js)
-+ [`.getCachedValue()`](./machines/get-cached-value.js)
-+ [`.destroyCachedValues()`](./machines/destroy-cached-values.js)
-+ [`.flushCache()`](./machines/flush-cache.js)
 
 
 ## Usage
