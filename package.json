@@ -1,7 +1,7 @@
 {
   "name": "waterline-driver-interface",
   "version": "1.0.0",
-  "description": "Abstract machines describing the Waterline driver API.",
+  "description": "Standardized interface for common functionality, expressed in layers.  Covers communication with databases, hardware, web services, and more.",
   "scripts": {
     "test": "echo 'no tests'"
   },
@@ -12,65 +12,12 @@
     "machinepack",
     "database-driver"
   ],
-  "author": "The Treeline Company",
+  "author": "The Sails Company",
   "license": "MIT",
   "dependencies": {
-    "machine": "^13.0.0-0"
+    "@sailshq/lodash": "3.10.2",
+    "include-all": "^4.0.0",
+    "machine": "^13.0.0-22"
   },
-  "machinepack": {
-    "friendlyName": "Waterline driver interface",
-    "description": "A standardized interface for common database functionality.",
-    "isAbstract": true,
-    "defines": {
-      "connectable": {
-        "machines": [
-          "create-manager",
-          "destroy-manager",
-          "get-connection",
-          "release-connection"
-        ]
-      },
-      "cache": {
-        "machines": [
-          "cache-value",
-          "get-cached-value",
-          "destroy-cached-values",
-          "flush-cache"
-        ]
-      },
-      "queryable": {
-        "machines": [
-          "send-native-query",
-          "compile-statement",
-          "parse-native-query-error",
-          "parse-native-query-result"
-        ]
-      },
-      "transactional": {
-        "machines": [
-          "begin-transaction",
-          "commit-transaction",
-          "rollback-transaction"
-        ]
-      }
-    },
-    "machineDir": "machines/",
-    "machines": [
-      "create-manager",
-      "destroy-manager",
-      "get-connection",
-      "release-connection",
-      "send-native-query",
-      "begin-transaction",
-      "commit-transaction",
-      "rollback-transaction",
-      "compile-statement",
-      "parse-native-query-error",
-      "parse-native-query-result",
-      "cache-value",
-      "get-cached-value",
-      "destroy-cached-values",
-      "flush-cache"
-    ]
-  }
+  "repository": "https://github.com/node-machine/driver-interface"
 }

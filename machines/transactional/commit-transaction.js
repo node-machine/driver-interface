@@ -10,10 +10,10 @@ module.exports = {
   inputs: {
 
     connection:
-      require('../constants/connection.input'),
+      require('../../constants/connection.input'),
 
     meta:
-      require('../constants/meta.input')
+      require('../../constants/meta.input')
 
   },
 
@@ -31,7 +31,7 @@ module.exports = {
     },
 
     badConnection:
-      require('../constants/badConnection.exit')
+      require('../../constants/badConnection.exit')
 
   }
 

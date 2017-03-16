@@ -30,7 +30,7 @@ module.exports = {
     },
 
     meta:
-      require('../constants/meta.input')
+      require('../../constants/meta.input')
 
   },
 

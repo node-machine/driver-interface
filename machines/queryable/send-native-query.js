@@ -10,7 +10,7 @@ module.exports = {
   inputs: {
 
     connection:
-      require('../constants/connection.input'),
+      require('../../constants/connection.input'),
 
     nativeQuery: {
       description: 'A native query for the database.',
@@ -31,7 +31,7 @@ module.exports = {
     },
 
     meta:
-      require('../constants/meta.input')
+      require('../../constants/meta.input')
 
   },
 
@@ -59,7 +59,7 @@ module.exports = {
     },
 
     badConnection:
-      require('../constants/badConnection.exit')
+      require('../../constants/badConnection.exit')
 
   }
 

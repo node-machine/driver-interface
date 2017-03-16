@@ -59,7 +59,7 @@ module.exports = {
       }
     },
 
-    badConnection: require('../constants/badConnection.exit')
+    badConnection: require('../../constants/badConnection.exit')
 
   }
 
