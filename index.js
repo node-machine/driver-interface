@@ -24,7 +24,7 @@ var UNCONVENTIONAL_METHOD_NAMES = [
 
 
 var inventory = includeAll({
-  dirname: path.resolve(__dirname, 'machines/'),
+  dirname: path.resolve(__dirname, 'layers/'),
   filter: /(.+)\.js/,
   exclude: [
     /^index.js$/

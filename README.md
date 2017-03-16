@@ -49,67 +49,67 @@ First, a quick summary:
 Any database or system-- doesn't necessarily need to support persistent connections.
 
 A driver implements the _Connectable_ interface layer if it includes the following machines:
-+ [`.createManager()`](./machines/create-manager.js)
-+ [`.destroyManager()`](./machines/destroy-manager.js)
-+ [`.getConnection()`](./machines/get-connection.js)
-+ [`.releaseConnection()`](./machines/release-connection.js)
++ [`.createManager()`](./layers/connectable/create-manager.js)
++ [`.destroyManager()`](./layers/connectable/destroy-manager.js)
++ [`.getConnection()`](./layers/connectable/get-connection.js)
++ [`.releaseConnection()`](./layers/connectable/release-connection.js)
 
 #### Modeled
 Any database that fully supports CRUD operations against predefined data models; including basic batch record manipulation, filtering, pagination, and a few of the most common aggregation operations.
 
 A driver implements the _Modeled_ interface layer if it includes the following machines:
-+ [`.verifyModelDef()`](./machines/verify-model-def.js)
-+ [`.createRecord()`](./machines/create-record.js)
-+ [`.createEachRecord()`](./machines/create-each-record.js)
-+ [`.updateRecords()`](./machines/update-records.js)
-+ [`.destroyRecords()`](./machines/destroy-records.js)
-+ [`.findRecords()`](./machines/find-records.js)
-+ [`.countRecords()`](./machines/count-records.js)
-+ [`.sumRecords()`](./machines/sum-records.js)
-+ [`.avgRecords()`](./machines/avg-records.js)
++ [`.verifyModelDef()`](./layers/modeled/verify-model-def.js)
++ [`.createRecord()`](./layers/modeled/create-record.js)
++ [`.createEachRecord()`](./layers/modeled/create-each-record.js)
++ [`.updateRecords()`](./layers/modeled/update-records.js)
++ [`.destroyRecords()`](./layers/modeled/destroy-records.js)
++ [`.findRecords()`](./layers/modeled/find-records.js)
++ [`.countRecords()`](./layers/modeled/count-records.js)
++ [`.sumRecords()`](./layers/modeled/sum-records.js)
++ [`.avgRecords()`](./layers/modeled/avg-records.js)
 
 #### Migratable
 Any database or system that supports a concept of tabular data with unique indexes.
 
 A driver implements the _Migratable_ interface layer if it includes the following machines:
-+ [`.definePhysicalModel()`](./machines/define-physical-model.js)
-+ [`.dropPhysicalModel()`](./machines/drop-physical-model.js)
-+ [`.setPhysicalSequence()`](./machines/set-physical-sequence.js)
++ [`.definePhysicalModel()`](./layers/migratable/define-physical-model.js)
++ [`.dropPhysicalModel()`](./layers/migratable/drop-physical-model.js)
++ [`.setPhysicalSequence()`](./layers/migratable/set-physical-sequence.js)
 
 #### Cache
 Any database or system which can function as a cache, with native support for key expiry.
 
 A driver implements the _Cache_ interface layer if it includes all machines necessary for _Connectable_, in addition to the following:
 
-+ [`.cacheValue()`](./machines/cache-value.js)
-+ [`.getCachedValue()`](./machines/get-cached-value.js)
-+ [`.destroyCachedValues()`](./machines/destroy-cached-values.js)
-+ [`.flushCache()`](./machines/flush-cache.js)
++ [`.cacheValue()`](./layers/cache/cache-value.js)
++ [`.getCachedValue()`](./layers/cache/get-cached-value.js)
++ [`.destroyCachedValues()`](./layers/cache/destroy-cached-values.js)
++ [`.flushCache()`](./layers/cache/flush-cache.js)
 
 #### Queryable
 Any database or system which supports the concept of queries, uniqueness constraints, and tables/collections.  Uses [WLQL (stage 4 query)](https://github.com/treelinehq/waterline-query-docs) syntax, which is based on [Knex](http://knexjs.org/).
 
 A driver implements the _Queryable_ IL if it includes all machines nececssary for _Connectable_, in addition to the following:
-+ [`.sendNativeQuery()`](./machines/send-native-query.js)
-+ [`.compileStatement()`](./machines/compile-statement.js)
-+ [`.parseNativeQueryResult()`](./machines/parse-native-query-result.js)
-+ [`.parseNativeQueryError()`](./machines/parse-native-query-error.js)
++ [`.sendNativeQuery()`](./layers/queryable/send-native-query.js)
++ [`.compileStatement()`](./layers/queryable/compile-statement.js)
++ [`.parseNativeQueryResult()`](./layers/queryable/parse-native-query-result.js)
++ [`.parseNativeQueryError()`](./layers/queryable/parse-native-query-error.js)
 
 #### Transactional
 Any database with native support for transactions.
 
 A driver implements the _Transactional_ IL if it includes all machines nececssary for _Queryable_, in addition to the following:
 
-+ [`.beginTransaction()`](./machines/begin-transaction.js)
-+ [`.commitTransaction()`](./machines/commit-transaction.js)
-+ [`.rollbackTransaction()`](./machines/rollback-transaction.js)
++ [`.beginTransaction()`](./layers/transactional/begin-transaction.js)
++ [`.commitTransaction()`](./layers/transactional/commit-transaction.js)
++ [`.rollbackTransaction()`](./layers/transactional/rollback-transaction.js)
 
 
 
 ## Usage
 
 #### Methods
-See the [abstract machines](./machines) defined in this repo.
+See the [abstract machines](./layers) defined in this repo.
 
 #### Query Language
 The Queryable interface layer supports declarative syntax for most types of DQL/DML queries via `compileStatement()`, and the normalized result returned by `parseNativeQueryResult()`.  See the [WLQL (stage 4 query) docs](https://github.com/treelinehq/waterline-query-docs/blob/master/docs/) for more information.
@@ -162,18 +162,20 @@ The Waterline driver interface is designed to solve this problem bottom-up, once
 
 ## When will there be official support in Sails and/or Waterline?
 
+March, 2017
+
 ~~Our primary focus at the moment is to finish, test, and document feature-complete implementations of the supported interface layers for MySQL, MongoDB, and PostgreSQL.  Early versions of some drivers are available as of March 2016.~~
 
-> ##### Update:
->As of early Dec 2016, drivers for MySQL, MongoDB, and PostgreSQL are ready to start beating on.  They've been out for early testing for almost a year now, and the next version of Waterline (v0.13) / Sails (v1.0) will use them from the respective core adapters.  Meanwhile, the Redis driver, which implements the "Cache" IL (instead of "Queryable") is tentatively ready for production use.
+> ##### ~~Update~~:
+>~~As of early Dec 2016, drivers for MySQL, MongoDB, and PostgreSQL are ready to start beating on.  They've been out for early testing for almost a year now, and the next version of Waterline (v0.13) / Sails (v1.0) will use them from the respective core adapters.  Meanwhile, the Redis driver, which implements the "Cache" IL (instead of "Queryable") is tentatively ready for production use.~~
 >
-> See https://github.com/treelinehq/waterline-query-docs/issues/2#issuecomment-186622547 for more discussion about the future of this specification and related APIs in Waterline and the Node-Machine project.
+> ~~See https://github.com/treelinehq/waterline-query-docs/issues/2#issuecomment-186622547 for more discussion about the future of this specification and related APIs in Waterline and the Node-Machine project.~~
 >
-> Contributors will be putting the drivers through a lot more testing over the next 2 weeks, at which point they'll go into the Sails v1 prerelease, then into Sails v1 itself.
+> ~~Contributors will be putting the drivers through a lot more testing over the next 2 weeks, at which point they'll go into the Sails v1 prerelease, then into Sails v1 itself.~~
 
 
 
 ## License
 
-MIT &copy; 2016 [Cody Stoltman](http://github.com/particlebanana), [Mike McNeil](http://github.com/mikermcneil) and contributors
+MIT &copy; 2016-2017 [The Sails Company](http://sailsjs.com/studio), [Cody Stoltman](http://github.com/particlebanana), [Mike McNeil](http://github.com/mikermcneil) and contributors
 
