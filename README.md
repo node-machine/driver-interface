@@ -43,6 +43,7 @@ First, a quick summary:
 | Cache           | _Draft_         | Mar 2016   | Connectable
 | Queryable       | _Unstable_      | Jan 2016   | Connectable
 | Transactional   | _Stable_        | Jan 2016   | Queryable
+| Tradeable       | _Experimental_  | Nov 2017   | _n/a_
 
 
 #### Connectable
@@ -104,6 +105,16 @@ A driver implements the _Transactional_ IL if it includes all machines nececssar
 + [`.commitTransaction()`](./layers/transactional/commit-transaction.js)
 + [`.rollbackTransaction()`](./layers/transactional/rollback-transaction.js)
 
+
+#### Tradeable
+Any stock, forex, security, commodity, or cryptocurrency exchange that allows selling some of one thing for some of another thing.
+
+A driver implements the _Tradeable_ interface layer if it includes the following machines:
++ [`.cancelEachOrder()`](https://www.npmjs.com/package/privateer#canceleachorder)
++ [`.createEachOrder()`](https://www.npmjs.com/package/privateer#createeachorder)
++ [`.getActiveOrders()`](https://www.npmjs.com/package/privateer#getactiveorders)
++ [`.getExchangeRates()`](https://www.npmjs.com/package/privateer#getexchangerates)
++ [`.getHoldings()`](https://www.npmjs.com/package/privateer#getholdings)
 
 
 ## Usage
