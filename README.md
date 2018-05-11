@@ -92,8 +92,8 @@ Any database or system which supports the concept of queries, uniqueness constra
 
 A driver implements the _Queryable_ IL if it includes all machines nececssary for _Connectable_, in addition to the following:
 + [`.sendNativeQuery()`](./layers/queryable/send-native-query.js)
-+ [`.compileStatement()`](./layers/queryable/compile-statement.js) _(deprecated, but must still be implemented at least as a stub until driver interface version is bumped)_
-+ [`.parseNativeQueryResult()`](./layers/queryable/parse-native-query-result.js) _(deprecated, but must still be implemented at least as a stub until driver interface version is bumped)_
++ ~~[`.compileStatement()`](./layers/queryable/compile-statement.js)~~ _(deprecated, but must still be implemented at least as a stub until driver interface version is bumped)_
++ ~~[`.parseNativeQueryResult()`](./layers/queryable/parse-native-query-result.js)~~ _(deprecated, but must still be implemented at least as a stub until driver interface version is bumped)_
 + [`.parseNativeQueryError()`](./layers/queryable/parse-native-query-error.js) _(will potentially be consolidated into `sendNativeQuery`, always enabled, and attaches a `footprint` property to the Error instance resulting from the queryFailed exit)_
 
 #### Transactional
