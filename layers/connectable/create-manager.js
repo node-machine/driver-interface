@@ -46,7 +46,7 @@ module.exports = {
         '  console.warn(\'Unexpected failure in database manager:\',err);\n'+
         '}\n'+
         '```',
-      example: '->'
+      example: '==='
     },
 
     meta:
@@ -67,7 +67,7 @@ module.exports = {
         'basis; and it may also vary based on the configuration passed into the `meta` input.',
       outputVariableName: 'report',
       outputDescription: 'The `manager` property is a manager instance that will be passed into `getConnection()`. The `meta` property is reserved for custom driver-specific extensions.',
-      example: {
+      outputExample: {
         manager: '===',
         meta: '==='
       }
