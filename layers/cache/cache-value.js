@@ -59,7 +59,7 @@ module.exports = {
       description: 'Value was successfully written.',
       outputVariableName: 'report',
       outputDescription: 'The `meta` property is reserved for custom driver-specific extensions.',
-      example: {
+      outputExample: {
         meta: '==='
       }
     },

@@ -7,7 +7,7 @@ module.exports = {
   description: 'Flush the cache, removing all data from it.',
 
 
-  cacheable: true,
+  sideEffects: 'idempotent',
 
 
   inputs: {
@@ -36,14 +36,14 @@ module.exports = {
       description: 'Cache was successfully flushed.',
       outputVariableName: 'report',
       outputDescription: 'The return value is true when the cache was successfully flushed.',
-      example: true
+      outputExample: true
     },
 
     failed: {
       description: 'The cache encountered an error while attempting to flush the cache.',
       outputVariableName: 'report',
       outputDescription: 'The `error` property is a JavaScript Error instance explaining the exact error.  The `meta` property is reserved for custom driver-specific extensions.',
-      example: {
+      outputExample: {
         error: '===',
         meta: '==='
       }

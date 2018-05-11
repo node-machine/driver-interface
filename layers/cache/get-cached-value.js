@@ -7,7 +7,7 @@ module.exports = {
   description: 'Look up the cached value associated with the specified key.',
 
 
-  cacheable: true,
+  sideEffects: 'cacheable',
 
 
   inputs: {
@@ -44,7 +44,7 @@ module.exports = {
       description: 'Value was successfully fetched.',
       outputVariableName: 'report',
       outputDescription: 'The `value` property is the cached value that was just retrieved.  The `meta` property is reserved for custom driver-specific extensions.',
-      example: {
+      outputExample: {
         value: '*',
         meta: '==='
       }
@@ -54,7 +54,7 @@ module.exports = {
       description: 'No value exists under the specified key.',
       outputVariableName: 'report',
       outputDescription: 'The `meta` property is reserved for custom driver-specific extensions.',
-      example: {
+      outputExample: {
         meta: '==='
       }
     },

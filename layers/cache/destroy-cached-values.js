@@ -43,7 +43,7 @@ module.exports = {
       description: 'The specified array of keys were deleted.',
       outputVariableName: 'report',
       outputDescription: 'The `meta` property is reserved for custom driver-specific extensions.',
-      example: {
+      outputExample: {
         meta: '==='
       }
     },
@@ -53,7 +53,7 @@ module.exports = {
       extendedDescription: 'For example, the driver might reject certain reserved keys.  Or the underlying database might not permit certain keys to be used.',
       outputVariableName: 'report',
       outputDescription: 'The `meta` property is reserved for custom driver-specific extensions.',
-      example: {
+      outputExample: {
         meta: '==='
       }
     },
@@ -62,7 +62,7 @@ module.exports = {
       description: 'The cache encountered an error while attempting to destroy one or more of the specified keys.',
       outputVariableName: 'report',
       outputDescription: 'The `error` property is a JavaScript Error instance explaining the exact error.  The `meta` property is reserved for custom driver-specific extensions.',
-      example: {
+      outputExample: {
         error: '===',
         meta: '==='
       }
