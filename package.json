@@ -1,5 +1,5 @@
 {
-  "name": "waterline-driver-interface",
+  "name": "driver-interface",
   "version": "1.0.1",
   "description": "Standardized interface for common functionality, expressed in layers.  Covers communication with databases, hardware, web services, and more.",
   "scripts": {
@@ -12,12 +12,11 @@
     "machinepack",
     "database-driver"
   ],
-  "author": "The Sails Company",
   "license": "MIT",
   "dependencies": {
     "@sailshq/lodash": "3.10.2",
     "include-all": "^4.0.0",
-    "machine": "^13.0.0-22"
+    "machine": "^15.0.0"
   },
   "repository": "https://github.com/node-machine/driver-interface"
 }
