@@ -92,9 +92,9 @@ Any database or system which supports the concept of queries, uniqueness constra
 
 A driver implements the _Queryable_ IL if it includes all machines nececssary for _Connectable_, in addition to the following:
 + [`.sendNativeQuery()`](./layers/queryable/send-native-query.js)
-+ [`.compileStatement()`](./layers/queryable/compile-statement.js)
-+ [`.parseNativeQueryResult()`](./layers/queryable/parse-native-query-result.js)
-+ [`.parseNativeQueryError()`](./layers/queryable/parse-native-query-error.js)
++ ~~[`.compileStatement()`](./layers/queryable/compile-statement.js)~~ _(deprecated)_
++ [`.parseNativeQueryResult()`](./layers/queryable/parse-native-query-result.js) _(will potentially be consolidated into `sendNativeQuery`)_
++ [`.parseNativeQueryError()`](./layers/queryable/parse-native-query-error.js) _(will potentially be consolidated into `sendNativeQuery`)_
 
 #### Transactional
 Any database with native support for transactions.
@@ -161,7 +161,7 @@ This approach alone works great for most teams and applications...at least for t
 
 
 #### Going Below Deck
-Historically, the database-specific connection and querying logic necessary for these lower-level features was sprinkled throughout adapters. This led to duplicative code with a high degree of variability; which in turn, restricted the kind of database-specific features that could be added to adapters.  Worse, this murkiness meant that, despite the fact that tons of lower-level logic was already implemented in adapters, it could not be called directly from userland.  Instead, Sails/Waterline developers had to use NPM packages directly (e.g. `mysql`, `redis`, `pg`).  This is time consuming and can be tricky; especially for folks new to Node.  
+Historically, the database-specific connection and querying logic necessary for these lower-level features was sprinkled throughout adapters. This led to duplicative code with a high degree of variability; which in turn, restricted the kind of database-specific features that could be added to adapters.  Worse, this murkiness meant that, despite the fact that tons of lower-level logic was already implemented in adapters, it could not be called directly from userland.  Instead, Sails/Waterline developers had to use NPM packages directly (e.g. `mysql`, `redis`, `pg`).  This is time consuming and can be tricky; especially for folks new to Node.
 
 The Waterline driver interface is designed to solve this problem bottom-up, once and for all.  Drivers sit one rung _below_ adapters on the ladder of abstraction.  They provide the same functionality as  a _standard, database-agnostic interface_ for low-level database operations.
 
