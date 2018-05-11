@@ -65,23 +65,17 @@ module.exports = {
         'spawning an infinite number of connections (i.e. via `getConnection()`).  '+
         'The implementation of how exactly it does this varies on a driver-by-driver '+
         'basis; and it may also vary based on the configuration passed into the `meta` input.',
-      outputVariableName: 'report',
-      outputDescription: 'The `manager` property is a manager instance that will be passed into `getConnection()`. The `meta` property is reserved for custom driver-specific extensions.',
-      outputExample: {
-        manager: '===',
-        meta: '==='
-      }
+      outputFriendlyName: 'Manager',
+      outputDescription: 'A manager instance that will be passed into `getConnection()`.',
+      outputExample: '==='
     },
 
     malformed: {
       description: 'The provided connection string is malformed.',
       extendedDescription: 'The format of connection strings varies across different databases and their drivers.  This exit indicates that the provided string is not valid as per the custom rules of this driver. Note that if this exit is traversed, it means the driver DID NOT ATTEMPT to create a manager-- instead the invalid connection string was discovered during a check performed beforehand.',
-      outputVariableName: 'report',
-      outputDescription: 'The `error` property is a JavaScript Error instance explaining that (and preferably "why") the provided connection string is invalid.  The `meta` property is reserved for custom driver-specific extensions.',
-      outputExample: {
-        error: '===',
-        meta: '==='
-      }
+      outputFriendlyName: 'Error',
+      outputDescription: 'A JavaScript Error instance explaining that (and preferably "why") the provided connection string is invalid.',
+      outputExample: '==='
     },
 
     failed: {
@@ -101,12 +95,9 @@ module.exports = {
         'multiple connections immediately when the manager is created, then this exit will be called if any of '+
         'those initial attempts fail.  On the other hand, if the manager is designed to produce adhoc connections, '+
         'any errors related to bad credentials, connectivity, etc. will not be caught until `getConnection()` is called.',
-      outputVariableName: 'report',
-      outputDescription: 'The `error` property is a JavaScript Error instance with more information and a stack trace.  The `meta` property is reserved for custom driver-specific extensions.',
-      outputExample: {
-        error: '===',
-        meta: '==='
-      }
+      outputFriendlyName: 'Error',
+      outputDescription: 'A JavaScript Error instance with more information and a stack trace.',
+      outputExample: '==='
     }
 
   }

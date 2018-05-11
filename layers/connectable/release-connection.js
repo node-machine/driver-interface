@@ -25,12 +25,7 @@ module.exports = {
 
     success: {
       description: 'The connection was released and is no longer active.',
-      extendedDescription: 'The provided connection may no longer be used for any subsequent queries.',
-      outputVariableName: 'report',
-      outputDescription: 'The `meta` property is reserved for custom driver-specific extensions.',
-      outputExample: {
-        meta: '==='
-      }
+      extendedDescription: 'The provided connection may no longer be used for any subsequent queries.'
     },
 
     badConnection:

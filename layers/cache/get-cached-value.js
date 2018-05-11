@@ -42,7 +42,7 @@ module.exports = {
 
     success: {
       description: 'Value was successfully fetched.',
-      outputVariableName: 'report',
+      outputFriendlyName: 'report',
       outputDescription: 'The `value` property is the cached value that was just retrieved.  The `meta` property is reserved for custom driver-specific extensions.',
       outputExample: {
         value: '*',
@@ -52,7 +52,7 @@ module.exports = {
 
     notFound: {
       description: 'No value exists under the specified key.',
-      outputVariableName: 'report',
+      outputFriendlyName: 'report',
       outputDescription: 'The `meta` property is reserved for custom driver-specific extensions.',
       outputExample: {
         meta: '==='

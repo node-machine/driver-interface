@@ -40,12 +40,9 @@ module.exports = {
     success: {
       description: 'A connection was successfully acquired.',
       extendedDescription: 'This connection should be eventually released, or its enclosing manager should be destroyed.  Otherwise, it may time out.  It is not a good idea to rely on database connections timing out-- be sure to release this connection (or destroy its manager) when finished with it!',
-      outputVariableName: 'report',
-      outputDescription: 'The `connection` property is an active connection to the database.  The `meta` property is reserved for custom driver-specific extensions.',
-      outputExample: {
-        connection: '===',
-        meta: '==='
-      }
+      outputFriendlyName: 'Connection',
+      outputDescription: 'An active connection to the database.',
+      outputExample: '==='
     },
 
     failed: {
@@ -68,12 +65,9 @@ module.exports = {
         'waits until `getConnection()` is called. If an invalid connection string was supplied to `createManager()`, then in the '+
         'latter case, the manager would still be created successfully.  But when `getConnection()` was called it would fail, '+
         'triggering this exit.',
-      outputVariableName: 'report',
-      outputDescription: 'The `error` property is a JavaScript Error instance with more information and a stack trace.  The `meta` property is reserved for custom driver-specific extensions.',
-      outputExample: {
-        error: '===',
-        meta: '==='
-      }
+      outputFriendlyName: 'Error',
+      outputDescription: 'A JavaScript Error instance with more information and a stack trace.',
+      outputExample: '==='
     }
 
   }

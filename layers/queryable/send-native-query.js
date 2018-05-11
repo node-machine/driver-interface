@@ -40,7 +40,7 @@ module.exports = {
 
     success: {
       description: 'The native query was executed successfully.',
-      outputVariableName: 'report',
+      outputFriendlyName: 'report',
       outputDescription: 'The `result` property is the result data the database sent back.  The `meta` property is reserved for custom driver-specific extensions.',
       outputExample: {
         result: '===',
@@ -50,7 +50,7 @@ module.exports = {
 
     queryFailed: {
       description: 'The database returned an error when attempting to execute the native query.',
-      outputVariableName: 'report',
+      outputFriendlyName: 'report',
       outputDescription: 'The `error` property is a JavaScript Error instance with more details about what went wrong.  The `meta` property is reserved for custom driver-specific extensions.',
       outputExample: {
         error: '===',
