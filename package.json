@@ -14,9 +14,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@sailshq/lodash": "3.10.2",
-    "include-all": "^4.0.0",
-    "machine": "^15.0.0"
+    "include-all": "^4.0.0"
   },
   "repository": "https://github.com/node-machine/driver-interface"
 }
