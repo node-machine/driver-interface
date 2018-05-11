@@ -1,6 +1,6 @@
 {
   "name": "driver-interface",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Standardized interface for common functionality, expressed in layers.  Covers communication with databases, hardware, web services, and more.",
   "scripts": {
     "test": "echo 'no tests'"
