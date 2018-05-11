@@ -25,7 +25,7 @@ module.exports = {
       extendedDescription: 'Until it is committed, rolled back, or times out, subsequent queries run on this connection will be transactional.  They will not have any true effect on the database until the transaction is committed, and will not affect queries made on other connections.',
       outputVariableName: 'report',
       outputDescription: 'The `meta` property is reserved for custom driver-specific extensions.',
-      example: {
+      outputExample: {
         meta: '==='
       }
     },

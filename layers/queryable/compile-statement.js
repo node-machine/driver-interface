@@ -36,7 +36,7 @@ module.exports = {
       extendedDescription: 'The compiled `nativeQuery` will be coerced to a JSON-serializable value if it isn\'t one already (see [rttc.dehydrate()](https://github.com/node-machine/rttc#dehydratevalue-allownullfalse-dontstringifyfunctionsfalse)). That means any Date instances therein will be converted to timezone-agnostic ISO timestamp strings (i.e. JSON timestamps).',
       outputVariableName: 'report',
       outputDescription: 'The `nativeQuery` property is the compiled native query for the database.  The `valuesToEscape` property is the values which accompany the native query.  The `meta` property is reserved for custom driver-specific extensions.',
-      example: {
+      outputExample: {
         nativeQuery: '*',
         valuesToEscape: ['*'],
         meta: '==='
@@ -47,7 +47,7 @@ module.exports = {
       description: 'The provided Waterline statement could not be compiled due to malformed syntax.',
       outputVariableName: 'report',
       outputDescription: 'The `error` property is a JavaScript error instance explaining that (or preferably even _why_) the Waterline syntax is not valid.  The `meta` property is reserved for custom driver-specific extensions.',
-      example: {
+      outputExample: {
         error: '===',
         meta: '==='
       }
@@ -58,7 +58,7 @@ module.exports = {
       extendedDescription: 'If even one clause of the Waterline statement is not supported by the driver, the compilation of the entire statement _always fails_.',
       outputVariableName: 'report',
       outputDescription: 'The `error` property is a JavaScript error instance explaining that (or preferably even _why_) the Waterline statement is not supported.  The `meta` property is reserved for custom driver-specific extensions.',
-      example: {
+      outputExample: {
         error: '===',
         meta: '==='
       }
