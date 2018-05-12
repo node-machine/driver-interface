@@ -7,7 +7,7 @@ module.exports = {
   description: 'Parse a raw result from a native query and normalize it for the specified query type.',
 
 
-  cacheable: true,
+  sideEffects: 'cacheable',
 
 
   sync: true,

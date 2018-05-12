@@ -7,7 +7,7 @@ module.exports = {
   description: 'Compile a Waterline statement to a native query for the database.',
 
 
-  cacheable: true,
+  sideEffects: 'cacheable',
 
 
   sync: true,
