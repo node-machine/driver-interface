@@ -7,7 +7,7 @@ module.exports = {
   description: 'Attempt to identify and parse a raw error from sending a native query and normalize it to a standard error footprint.',
 
 
-  cacheable: true,
+  sideEffects: 'cacheable',
 
 
   sync: true,
