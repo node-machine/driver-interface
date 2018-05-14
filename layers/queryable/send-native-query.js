@@ -9,9 +9,6 @@ module.exports = {
 
   inputs: {
 
-    connection:
-      require('../../constants/connection.input'),
-
     nativeQuery: {
       description: 'A native query for the database.',
       extendedDescription: 'If `valuesToEscape` is provided, this supports template syntax like `$1`, `$2`, etc.',
@@ -29,6 +26,9 @@ module.exports = {
       example: [ '*' ],
       defaultsTo: []
     },
+    
+    connection:
+      require('../../constants/connection.input'),
 
     meta:
       require('../../constants/meta.input')
