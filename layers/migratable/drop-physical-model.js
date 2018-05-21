@@ -4,7 +4,7 @@ module.exports = {
   friendlyName: 'Drop (physical model)',
 
 
-  description: '',//TODO
+  description: 'Completely drop & destroy any traces of a particular physical model (e.g. relational table or Mongo collection, etc).',
 
 
   sideEffects: 'idempotent',
@@ -12,15 +12,23 @@ module.exports = {
 
   inputs: {
 
-    connection: require('../../constants/connection.input'),
-    // TODO: the rest
+    connection:
+      require('../../constants/connection.input'),
+
+    tableName:
+      require('../../constants/tableName.input'),
+
+    meta:
+      require('../../constants/meta.input'),
 
   },
 
 
   exits: {
 
-    // TODO
+    success: {
+      description: 'If such a physical model exists, it was dropped successfully.'
+    }
 
   },
 
