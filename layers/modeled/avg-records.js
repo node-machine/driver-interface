@@ -22,6 +22,7 @@ module.exports = {
     success: {
       outputFriendlyName: 'Average (mean)',
       outputDescription: 'The average value of the given property across all records.',
+      extendedDecription: 'If the underlying database would normally return a non-numeric value like `null`, return `0` instead.',
       outputExample: -48.1293
     },
 
