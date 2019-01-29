@@ -22,6 +22,7 @@ module.exports = {
     success: {
       outputFriendlyName: 'Total (sum)',
       outputDescription: 'The sum of the given property across all matching records.',
+      extendedDecription: 'If the underlying database would normally return a non-numeric value like `null`, return `0` instead.',
       outputExample: 999.99
     },
 
